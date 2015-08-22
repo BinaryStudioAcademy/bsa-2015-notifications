@@ -1,13 +1,25 @@
 var notificationRepository = require('../../repositories/notification');
-module.exports = function (app) {
+module.exports = function(app) {
 
-	app.get('/api/notification', function(req, res){
-		res.render('index');
-	});
 
-	app.post('/api/notification', function(req, res){
-		notificationRepository.add(req.body);
-		res.send("Success?");
-	});
+    app.post('/api/notification', function(req, res) {
+        notificationRepository.add(req.body);
+        res.send(req.body);
+    });
+
+    app.get('/api/notification', function(req, res) {
+        notificationRepository.getAll(function(err, data) {
+            res.err = err;
+            res.send(data);
+
+
+        });
+    });
+
+    app.get('/api/notification/app/ :iDapp', function(req, res) {
+
+    });
+
+
 
 };
