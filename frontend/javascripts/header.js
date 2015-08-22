@@ -1,21 +1,11 @@
 document.getElementById('appsBtn').onclick = function() {
-	document.getElementById("notificationBlock").style.visibility = "hidden";
+	document.getElementById("notificationBlock").classList.add('invisible'); 
     var block = document.getElementById("appsBlock");
-    if(block.style.visibility == "visible"){
-    	block.style.visibility = "hidden";
-    }
-    else{
-    	block.style.visibility = "visible";
-    }	
+    block.classList.toggle('invisible');	
 };
 
 document.getElementById('notificationBtn').onclick = function() {
-	document.getElementById("appsBlock").style.visibility = "hidden";
+	document.getElementById("appsBlock").classList.add('invisible');
     var block = document.getElementById("notificationBlock");
-    if(block.style.visibility == "visible"){
-    	block.style.visibility = "hidden";
-    }
-    else{
-    	block.style.visibility = "visible";
-    }	
+    block.classList.toggle('invisible');
 };

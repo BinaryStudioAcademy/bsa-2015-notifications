@@ -17,6 +17,7 @@ body
 	border none
 	
 .buttons
+	margin-right 4px
 	align-self center
 	display flex
 
@@ -41,6 +42,20 @@ body
 	border-radius 5px
 	
 #appsBtn
+	padding 3px;
+	border none
+	height 30px
+	width 30px
+	border-radius 5px
+	background #FFA800
+	cursor pointer
+	margin-left 10px
+	
+.appsLogo
+	width 100%
+	
+#notificationBtn
+	padding 3px;
 	border none
 	height 30px
 	width 30px
@@ -49,25 +64,14 @@ body
 	cursor pointer
 	margin-left 10px
 
-#notificationBtn
-	margin-left 10px
-	padding-top 30px
-	background-color black
-	border none
-	float right
-	width 34px
-	background-image url(http://icons.iconseeker.com/png/32/winter-wonderland/bell-6.png)
-	background-repeat no-repeat
-	cursor pointer
-
-.notificationBlock
+#notificationBlock
 	background #FFA800
 	min-height 300px
 	width 300px
 	border-radius 20px
 	right 0
 	position absolute
-	visibility hidden
+	transition 0.2s
 	&:before
 		width 0 
 		height 0 
@@ -79,14 +83,14 @@ body
 		margin-left 245px
 		position absolute
 		
-.appsBlock
+#appsBlock
 	background #FFA800
 	min-height 300px
 	width 300px
 	border-radius 20px
 	right 0
 	position absolute
-	visibility hidden
+	transition 0.2s
 	&:before
 		width 0 
 		height 0 
@@ -97,7 +101,8 @@ body
 		margin-top -20px
 		margin-left 205px
 		position absolute
-	
+.invisible
+	opacity 0
 button
 	transition all .1s linear
 	&:active

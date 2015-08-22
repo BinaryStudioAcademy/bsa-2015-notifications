@@ -15,10 +15,12 @@ html(lang="en")
 				div#userProfile
 					img.avatar(src="https://avatars1.githubusercontent.com/u/1202528?v=3&s=460")
 					span#userName John PAPA
-				button#appsBtn(onclick="showApps()")
+				button#appsBtn
+					img.appsLogo(src="images/Thumbnails.png")
 				button#notificationBtn
-		div#appsBlock.appsBlock()
-		div#notificationBlock.notificationBlock
+					img.appsLogo(src="images/bell.png")
+		div#appsBlock.invisible
+		div#notificationBlock.invisible
 	script(src="javascripts/libs.js")
 	script(src='javascripts/main.js')
 
