@@ -11,15 +11,28 @@ module.exports = function(app) {
         notificationRepository.getAll(function(err, data) {
             res.err = err;
             res.send(data);
-
-
         });
     });
 
-    app.get('/api/notification/app/ :iDapp', function(req, res) {
-
+    app.get('/api/notification/:id', function(req, res) {
+        notificationRepository.getById(req.params.id, function(err, data) {
+            res.err = err;
+            res.send(data);
+        });
     });
 
+    app.put('/api/notification/:id', function(req, res) {
+       notificationRepository.update(req.params.id, req.body, function(err, data) {
+            res.err = err;
+            res.send(data);
+        });
+    });
 
+    app.delete('/api/notification/:id', function(req, res) {
+        notificationRepository.delete(req.params.id, function(err, data) {
+            res.err = err;
+            res.send(data);
+        });
+    });
 
 };
