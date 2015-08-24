@@ -86,7 +86,7 @@ body
 #appsBlock
 	background #FFA800
 	min-height 300px
-	width 300px
+	width 265px
 	border-radius 20px
 	right 0
 	position absolute
@@ -99,11 +99,36 @@ body
 		border-bottom 20px solid #FFA800
 		content ''
 		margin-top -20px
-		margin-left 205px
+		margin-left 170px
 		position absolute
 .invisible
 	opacity 0
+	display none
 button
+	cursor pointer
 	transition all .1s linear
 	&:active
 		transform translateY(3px)
+
+.appButtons
+	margin 10px
+	align-self center
+
+.appButton
+	margin 5px
+	display table-cell
+	padding-left 20px
+	padding-bottom 10px
+.row
+	display table-row
+.firstinrow
+	padding-left 10px
+.secondinrow
+	padding-left 10px
+.appName
+	margin-left 5px
+	display table-caption
+	text-align center
+.singleAppBtn
+	background #fff
+	border none

@@ -9,3 +9,25 @@ document.getElementById('notificationBtn').onclick = function() {
     var block = document.getElementById("notificationBlock");
     block.classList.toggle('invisible');
 };
+
+document.getElementById('myaccountAppBtn').onclick = function () {
+    location.href = "/header";
+};
+document.getElementById('pdpAppBtn').onclick = function () {
+    location.href = "/header";
+};
+document.getElementById('qaAppBtn').onclick = function () {
+    location.href = "/header";
+};
+document.getElementById('codereviewAppBtn').onclick = function () {
+    location.href = "/header";
+};
+document.getElementById('hrAppBtn').onclick = function () {
+    location.href = "/header";
+};
+document.getElementById('feedbacksAppBtn').onclick = function () {
+    location.href = "/header";
+};
+document.getElementById('accountingAppBtn').onclick = function () {
+    location.href = "/header";
+};
