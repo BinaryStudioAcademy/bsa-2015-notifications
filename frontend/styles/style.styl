@@ -37,7 +37,7 @@ body
 	color white
 	margin-left 10px
 .avatar
-	height 95%
+	height 92%
 	border 1px solid #FFA800
 	border-radius 5px
 	
@@ -132,3 +132,38 @@ button
 .singleAppBtn
 	background #fff
 	border none
+	
+@media only screen and (max-width: 640px)
+	#userProfile
+		padding-right 0px
+	#userName
+		display none
+
+@media only screen and (max-width: 500px)
+	.header
+		margin-top 40px
+	#userProfile
+		padding-right 0px
+	#userName
+		display none
+	.searchBar
+		padding-left 10px
+		margin-top -65px
+		height 36px
+		left 0
+		position fixed
+		width 100%
+		border 2px solid #dadada
+		&:focus
+			outline none
+			border-color #9ecaed
+			box-shadow 0 0 10px #9ecaed
+	.searchBtn
+		margin-top -64px
+		padding-left 25px
+		padding-right 25px
+		height 38px
+		right 0
+		position fixed
+	.logo
+		width 155px
