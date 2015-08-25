@@ -66,7 +66,8 @@ body
 
 #notificationBlock
 	background #FFA800
-	min-height 300px
+	max-height 800px
+	overflow overlay
 	width 300px
 	border-radius 20px
 	right 0
@@ -109,10 +110,19 @@ button
 	transition all .1s linear
 	&:active
 		transform translateY(3px)
-
-.appButtons
-	margin 10px
+		
+#notificationList
+	padding-left 5px
+		
+.liNotification
+	list-style-type none;
+	
+.notification
+	display flex
+	margin-top 10px
+.imgApp
 	align-self center
+
 
 .appButton
 	margin 5px
@@ -133,6 +143,37 @@ button
 	background #fff
 	border none
 	
+
+
+.textBlockNotification
+	flex-grow 1
+
+.titleNotification
+	margin-bottom 3px
+	margin-top 3px
+	
+.textNotification
+	display: block
+	display -webkit-box
+	max-height 55.2px
+	overflow hidden
+	text-overflow ellipsis	
+	-webkit-line-clamp 3
+	-webkit-box-orient vertical
+
+
+	// display block
+	// 
+	// max-width 400px
+	// height 55.2px
+	// margin 0 auto
+	// font-size 26px
+	// line-height 1.4
+	// -webkit-line-clamp 3
+	// -webkit-box-orient vertical
+	// overflow hidden
+	// text-overflow ellipsis
+
 @media only screen and (max-width: 640px)
 	#userProfile
 		padding-right 0px
