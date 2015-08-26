@@ -23,11 +23,11 @@ function NotificationController($resource) {
 	   	var not = Notifications.query(function(res){
 	   		vm.notifications = res;
             for(var i = 0; i<vm.notifications.length; i++){
-                for(var j = 0; j<vm.notificationServices.length; j++){
-                    if(vm.notifications[i].serviceType == vm.notificationServices[j].name){
-                        vm.notifications[i].serviceType = vm.notificationServices[j];
-                    }
-                }
+                // for(var j = 0; j<vm.notificationServices.length; j++){
+                //     if(vm.notifications[i].serviceType == vm.notificationServices[j].name){
+                //         vm.notifications[i].serviceType = vm.notificationServices[j];
+                //     }
+                // }
                 vm.notifications[i].time = new Date(vm.notifications[i].time);
             }
     	}, function(err){
@@ -57,7 +57,7 @@ function NotificationController($resource) {
     
     vm.serviceFilter = function(notification) {
         if (vm.serviceIncludes.length > 0) {
-            if (vm.serviceIncludes.indexOf(notification.serviceType.name) < 0)
+            if (vm.serviceIncludes.indexOf(notification.serviceType) < 0)
                 return;
         }
         return notification;

@@ -1,4 +1,6 @@
 var notificationRepository = require('../../repositories/notification');
+var notificationService = require('../../services/notification');
+
 module.exports = function(app) {
 
 
@@ -10,7 +12,7 @@ module.exports = function(app) {
     });
 
     app.get('/api/notification', function(req, res) {
-        notificationRepository.getAll(function(err, data) {
+        notificationService.getAll(function(err, data) {
             res.err = err;
             res.send(data);
         });

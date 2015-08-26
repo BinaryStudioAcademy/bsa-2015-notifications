@@ -25,10 +25,10 @@
 .col-md-5
 	.panel.panel-default(ng-repeat="notification in notificationCtrl.notifications | filter: notificationCtrl.serviceFilter | filter: notificationCtrl.dateFilter | filter:searchText | orderBy: 'time'")
 		.panel-body
-			img.img-responsive.col-md-2(ng-src="{{notification.serviceType.logo}}")
+			img.img-responsive.col-md-2(ng-src="{{notification.serviceLogo}}")
 			.col-md-10
 				h4 {{notification.title}}
-				p {{notification.serviceType.name}}
+				p {{notification.serviceType}}
 				p {{notification.text}}
 				div(style="height: 300px" ng-show="notification.images.length")
 					carousel(interval="notificationCtrl.myInterval" no-wrap="notificationCtrl.noWrapSlides")

@@ -8,7 +8,11 @@ var NotificaitionServiceRepository = function(){
 
 NotificaitionServiceRepository.prototype = new Repository();
 
-NotificaitionServiceRepository.prototype.findByCriteria = function() {
+NotificaitionServiceRepository.prototype.findByServiceType = function(serviceType, callback) {
+
+	var model = this.model;
+	var query = model.findOne({name: serviceType});
+	query.exec(callback);
 
 };
 
