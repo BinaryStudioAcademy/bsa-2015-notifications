@@ -1,4 +1,4 @@
-module.exports = angular.module('notifications', ['ngRoute', 'ngResource'])
+module.exports = angular.module('notifications', ['ngRoute', 'ngResource', 'ngAnimate', 'ui.bootstrap'])
 	.config(['$routeProvider', '$resourceProvider', '$httpProvider', '$locationProvider',
 		function($routeProvider, $resourceProvider, $httpProvider, $locationProvider) {
 			$routeProvider

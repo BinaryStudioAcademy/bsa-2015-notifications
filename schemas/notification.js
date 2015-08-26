@@ -2,14 +2,15 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var notificationSchema = new Schema({
-	subject: String,
-	body: String
+			
+		title : String,
+		text : String,
+		images: Array,
+		time : Date, // time when message was send
+		url : String, // URL to redirect when click on message
+		sound : Boolean, // true by default		
+		serviceType: String // QA platform, Code Review Requests, Accounting...
+	
 });
-// var tests = new Schema({
-// 	name: String,
-// 	category: String,
-// 	file: String,
-// 	isDeleted: bollean
-// });
 
 module.exports = mongoose.model('Notification', notificationSchema);

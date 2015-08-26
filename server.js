@@ -21,4 +21,6 @@ var routes = require('./routes/')(app);
 
 var server = app.listen(4033);
 
+console.log("Server started.");
+
 module.exports = app;
