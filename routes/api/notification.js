@@ -3,6 +3,8 @@ module.exports = function(app) {
 
 
     app.post('/api/notification', function(req, res) {
+        var now = new Date();
+        req.body.time = now;
         notificationRepository.add(req.body);
         res.send(req.body);
     });

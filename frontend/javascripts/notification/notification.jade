@@ -1,1 +1,40 @@
-h1 {{ notificationCtrl.text }}
+.col-md-2.col-md-offset-2
+	h1 Filters
+	input.form-control(type="text" placeholder="Search by title" ng-model="searchText.title")
+	br
+	.col-md-12(ng-repeat="service in notificationCtrl.notificationServices")
+		input(type="checkbox" ng-click="notificationCtrl.includeService(service)") 
+		span {{service.name}}
+	h4 Start date
+	//- div(style="display:inline-block;")
+	//- 	datepicker.well.well-sm(ng-model="notificationCtrl.dtStart" max-date="notificationCtrl.today" show-weeks="false" starting-day="1")
+	p.input-group
+		input.form-control(type="text" datepicker-popup="{{notificationCtrl.format}}" ng-model="notificationCtrl.dtStart" is-open="notificationCtrl.status.startOpened" max-date="notificationCtrl.today" datepicker-options="notificationCtrl.dateOptions" close-text="Close")
+		span.input-group-btn
+			button.btn.btn-default(type="button" ng-click="notificationCtrl.openStart()")
+				i.glyphicon.glyphicon-calendar
+	h4 End date
+	//- div(style="display:inline-block;")
+	//- 	datepicker.well.well-sm(ng-model="notificationCtrl.dtEnd" max-date="notificationCtrl.today" show-weeks="false" starting-day="1")
+	p.input-group
+		input.form-control(type="text" datepicker-popup="{{notificationCtrl.format}}" ng-model="notificationCtrl.dtEnd" is-open="notificationCtrl.status.endOpened" max-date="notificationCtrl.today" datepicker-options="notificationCtrl.dateOptions" close-text="Close")
+		span.input-group-btn
+			button.btn.btn-default(type="button" ng-click="notificationCtrl.openEnd()")
+				i.glyphicon.glyphicon-calendar
+	button.btn.btn-danger(ng-click="notificationCtrl.clear()") Clear
+.col-md-5
+	.panel.panel-default(ng-repeat="notification in notificationCtrl.notifications | filter: notificationCtrl.serviceFilter | filter: notificationCtrl.dateFilter | filter:searchText | orderBy: 'time'")
+		.panel-body
+			img.img-responsive.col-md-2(ng-src="{{notification.serviceType.logo}}")
+			.col-md-10
+				h4 {{notification.title}}
+				p {{notification.serviceType.name}}
+				p {{notification.text}}
+				div(style="height: 300px" ng-show="notification.images.length")
+					carousel(interval="notificationCtrl.myInterval" no-wrap="notificationCtrl.noWrapSlides")
+						slide(ng-repeat="slide in notification.images")
+							img(ng-src="{{slide}}" style="margin:auto;")
+				span
+					b {{notification.time | date:'H:mm, d MMMM yyyy'}}
+				br
+				a(href="{{notification.url}}") Link
