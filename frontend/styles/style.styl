@@ -37,7 +37,7 @@ body
 	color white
 	margin-left 10px
 .avatar
-	height 95%
+	height 92%
 	border 1px solid #FFA800
 	border-radius 5px
 	
@@ -66,7 +66,8 @@ body
 
 #notificationBlock
 	background #FFA800
-	min-height 300px
+	max-height 800px
+	overflow overlay
 	width 300px
 	border-radius 20px
 	right 0
@@ -86,7 +87,7 @@ body
 #appsBlock
 	background #FFA800
 	min-height 300px
-	width 300px
+	width 265px
 	border-radius 20px
 	right 0
 	position absolute
@@ -99,11 +100,111 @@ body
 		border-bottom 20px solid #FFA800
 		content ''
 		margin-top -20px
-		margin-left 205px
+		margin-left 170px
 		position absolute
 .invisible
 	opacity 0
+	display none
 button
+	cursor pointer
 	transition all .1s linear
 	&:active
 		transform translateY(3px)
+		
+#notificationList
+	padding-left 5px
+		
+.liNotification
+	list-style-type none;
+	
+.notification
+	display flex
+	margin-top 10px
+.imgApp
+	align-self center
+
+
+.appButton
+	margin 5px
+	display table-cell
+	padding-left 20px
+	padding-bottom 10px
+.row
+	display table-row
+.firstinrow
+	padding-left 10px
+.secondinrow
+	padding-left 10px
+.appName
+	margin-left 5px
+	display table-caption
+	text-align center
+.singleAppBtn
+	background #fff
+	border none
+	
+
+
+.textBlockNotification
+	flex-grow 1
+
+.titleNotification
+	margin-bottom 3px
+	margin-top 3px
+	
+.textNotification
+	display: block
+	display -webkit-box
+	max-height 55.2px
+	overflow hidden
+	text-overflow ellipsis	
+	-webkit-line-clamp 3
+	-webkit-box-orient vertical
+
+
+	// display block
+	// 
+	// max-width 400px
+	// height 55.2px
+	// margin 0 auto
+	// font-size 26px
+	// line-height 1.4
+	// -webkit-line-clamp 3
+	// -webkit-box-orient vertical
+	// overflow hidden
+	// text-overflow ellipsis
+
+@media only screen and (max-width: 640px)
+	#userProfile
+		padding-right 0px
+	#userName
+		display none
+
+@media only screen and (max-width: 500px)
+	.header
+		margin-top 40px
+	#userProfile
+		padding-right 0px
+	#userName
+		display none
+	.searchBar
+		padding-left 10px
+		margin-top -65px
+		height 36px
+		left 0
+		position fixed
+		width 100%
+		border 2px solid #dadada
+		&:focus
+			outline none
+			border-color #9ecaed
+			box-shadow 0 0 10px #9ecaed
+	.searchBtn
+		margin-top -64px
+		padding-left 25px
+		padding-right 25px
+		height 38px
+		right 0
+		position fixed
+	.logo
+		width 155px
