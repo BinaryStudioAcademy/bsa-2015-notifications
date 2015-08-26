@@ -1,4 +1,4 @@
-Svar NotificationService = function(){
+var NotificationService = function(){
 
 };
 

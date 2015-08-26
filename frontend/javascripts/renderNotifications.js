@@ -1,70 +1,27 @@
 var notificationList = document.getElementById("notificationList");
-var respArray=[{
-    "title": "some Title 1",
-    "time": "10.09.15",
-    "text":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "url": "#",
-    "serviceType": "1"
-}, {
-    "title": "some Title 2",
-    "time": "10.09.15",
-    "text":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "url": "#",
-    "serviceType": "2"
-}, {
-    "title": "some Title 3",
-    "time": "10.09.15",
-    "text":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "url": "#",
-    "serviceType": "3"
-}, {
-    "title": "some Title 4",
-    "time": "10.09.15",
-    "text":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "url": "#",
-    "serviceType": "4"
-}, {
-    "title": "some Title 5",
-    "time": "10.09.15",
-    "text":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "url": "#",
-    "serviceType": "5"
-}, {
-    "title": "some Title 6",
-    "time": "10.09.15",
-    "text":"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    "url": "#",
-    "serviceType": "6"
-}, ];
+var respArray =[]; 
 
+var getNotification = function() {
+    
+    var request = new XMLHttpRequest();
 
-// var getAttention = function() {
+    request.open('GET', 'api/notification', true);
 
-//     var xhr = new XMLHttpRequest();
+    request.send();
 
-//     xhr.open('GET', 'api/notification', true);
+    request.onreadystatechange = function() { 
+        if (request.readyState != 4) return;
+        if (request.status != 200) {
+            alert(request.status + ': ' + request.statusText);
+        } else {
+          respArray = JSON.parse(request.responseText);
+            console.log(respArray);
+            addNotification(respArray);
+        }
+    };
+};
 
-//     xhr.send();
-
-//     xhr.onreadystatechange = function() { // (3)
-//         if (xhr.readyState != 4) return;
-
-       
-
-//         if (xhr.status != 200) {
-//             alert(xhr.status + ': ' + xhr.statusText);
-//         } else {
-//           respArray = JSON.parse(xhr.responseText);
-//             // respArray = xhr.responseText.map(function(obj) {
-//             //     JSON.parse(obj);
-//             // });
-//             console.log(respArray);
-//         }
-
-//     };
-// };
-
-//  document.getElementById('notificationBtn').onclick = getAttention();
+document.getElementById('notificationBtn').addEventListener('click',getNotification,false);
 var renderNotification = function(renderItem) {
     var newNotification = document.createElement('li');
     newNotification.className = 'liNotification';
@@ -73,6 +30,7 @@ var renderNotification = function(renderItem) {
 };
 
 var addNotification = function(arrayNotification) {
+    notificationList.innerHTML = '';
     arrayNotification.forEach(function(notiObj) {
 
         switch (notiObj.serviceType) {
@@ -95,9 +53,7 @@ var addNotification = function(arrayNotification) {
                 notiObj.imgUrl = "images/6.png";
                 break;
         }
-
         renderNotification(notiObj);
     });
 };
 
-addNotification(respArray);
