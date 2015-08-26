@@ -67,7 +67,7 @@ body
 #notificationBlock
 	background #FFA800
 	max-height 800px
-	overflow overlay
+	// overflow overlay
 	width 300px
 	border-radius 20px
 	right 0
@@ -146,14 +146,17 @@ button
 
 
 .textBlockNotification
+	display flex
+	flex-direction column
 	flex-grow 1
-
+	align-items flex-end
 .titleNotification
+	width 100%
 	margin-bottom 3px
 	margin-top 3px
 	
 .textNotification
-	display: block
+	display block
 	display -webkit-box
 	max-height 55.2px
 	overflow hidden

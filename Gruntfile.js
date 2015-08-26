@@ -79,14 +79,14 @@ module.exports = function(grunt) {
 					dest: 'public/images'
 				}]
 			},
-			js: {
-				files: [{
-					expand: true,
-					cwd: 'frontend/javascripts/',
-					src: ['**'],
-					dest: 'public/javascripts/'
-				}]
-			},
+			// js: {
+			// 	files: [{
+			// 		expand: true,
+			// 		cwd: 'frontend/javascripts/',
+			// 		src: ['**'],
+			// 		dest: 'public/javascripts/'
+			// 	}]
+			// },
 			fonts: {
 				files: [{
 					expand: true,
@@ -110,9 +110,13 @@ module.exports = function(grunt) {
 		},
 
 		browserify: {
-			my: {
+			header: {
+				dest: 'public/javascripts/headerAll.js',
+				src: ['frontend/javascripts/header/*.js']
+			},
+			main :{
 				dest: 'public/javascripts/main.js',
-				src: ['frontend/javascripts/**/*.js']
+				src: ['frontend/javascripts/notification/*.js']
 			}
 		},
 
