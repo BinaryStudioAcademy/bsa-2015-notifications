@@ -5,14 +5,16 @@ module.exports = function(app) {
 
 
     app.post('/api/notification', function(req, res) {
-        var now = new Date();
+        
         req.body.time = now;
         notificationRepository.add(req.body);
+
         res.send(req.body);
     });
 
     app.get('/api/notification', function(req, res) {
         notificationService.getAll(function(err, data) {
+            res.header('Access-Control-Allow-Origin', '*');
             res.err = err;
             res.send(data);
         });

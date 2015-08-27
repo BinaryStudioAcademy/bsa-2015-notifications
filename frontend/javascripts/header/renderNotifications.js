@@ -41,13 +41,7 @@ var addNotification = function(arrayNotification) {
             d.getMinutes().padLeft(),
             d.getSeconds().padLeft()
         ].join(':');
-        // notiObj.time = [d.getMonth()+1,
-        //        d.getDate(),
-        //        d.getFullYear()].join('/')+' '+
-        //       [d.getHours(),
-        //        d.getMinutes(),
-        //        d.getSeconds()].join(':');
-
+   
         renderNotification(notiObj);
     });
 };
