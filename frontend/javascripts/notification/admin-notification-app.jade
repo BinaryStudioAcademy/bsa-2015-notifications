@@ -5,11 +5,13 @@ div.test(ng-controller="AdminNotifAppController as adminNotifAppCtrl", class="co
 		</div>
 		<div class="modal-body row">
 			<div class="col-sm-6 col-sm-offset-3">
-				<img class="img-responsive" ng-src="{{modalnotifapp.tmpSrc}}" height="300px" width="300px">
+				<img class="img-responsive" ng-src="{{modalnotifapp.tmpSrc}}" height="200px" width="200px">
 				<form class="voffset3">
 					<div class="form-group">
 						<input type="text" ng-model="modalnotifapp.tmpName" class="form-control">
 						<input type="text" ng-model="modalnotifapp.tmpSrc" class="form-control">
+						<input type="checkbox" ng-model="modalnotifapp.tmpToiform" ng-click="modalnotifapp.changeSetting(modalnotifapp.notificationService)"/><span>To inform</span><br>
+						<input type="checkbox" ng-model="modalnotifapp.tmpSound" ng-click="modalnotifapp.changeSetting(modalnotifapp.notificationService)"/><span>Sound</span>
 					</div>
 				</form>
 			</div>

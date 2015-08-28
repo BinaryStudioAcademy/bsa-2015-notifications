@@ -6,10 +6,15 @@ app.controller('ModalNotifAppController', function ($modalInstance, $resource, n
     vm.notificationService = notificationService;
     vm.tmpSrc = notificationService.logo;
     vm.tmpName = notificationService.name;
+    vm.tmpToiform = notificationService.toInform;
+    vm.tmpSound = notificationService.sound;
 
     vm.save = function () {
       vm.notificationService.logo = vm.tmpSrc;
       vm.notificationService.name = vm.tmpName;
+      vm.notificationService.toInform = vm.tmpToiform;
+      vm.notificationService.sound = vm.tmpSound;
+
       $modalInstance.close(vm.notificationService);
     };
 
@@ -28,5 +33,9 @@ app.controller('ModalNotifAppController', function ($modalInstance, $resource, n
 
         vm.notificationServices.splice(index, 1);
         $modalInstance.dismiss('delete');
+    };
+
+    vm.changeSetting = function(obj){
+        console.log(obj);
     };
 });
