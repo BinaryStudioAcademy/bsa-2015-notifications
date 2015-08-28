@@ -1,0 +1,47 @@
+div.test(ng-controller="AdminNotifAppController as adminNotifAppCtrl", class="col-sm-6 col-sm-offset-3")
+	script(type='text/ng-template', id='modalNotifApp.html').
+		<div class="modal-header">
+			<h3 class="modal-title">Edit service</h3>
+		</div>
+		<div class="modal-body row">
+			<div class="col-sm-6 col-sm-offset-3">
+				<img class="img-responsive" ng-src="{{modalnotifapp.tmpSrc}}" height="300px" width="300px">
+				<form class="voffset3">
+					<div class="form-group">
+						<input type="text" ng-model="modalnotifapp.tmpName" class="form-control">
+						<input type="text" ng-model="modalnotifapp.tmpSrc" class="form-control">
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="modal-footer">
+		<button type="button" class="btn btn-danger pull-left" ng-click="modalnotifapp.delete()">Delete</button>
+		<button class="btn btn-primary" type="button" ng-click="modalnotifapp.save()">Save</button>
+		<button class="btn btn-warning" type="button" ng-click="modalnotifapp.cancel()">Cancel</button>
+		</div>
+	.col-md-10.col-md-offset-2.row#searchblockAdminApp
+		.col-md-6
+			input.form-control.input-lg(type="text" placeholder="Search" ng-model="searchText") 
+		.col-md-3
+			button.btn.btn-primary.btn-lg(type='button', ng-click='adminNotifAppCtrl.isCollapsed = false') Add new service
+		.col-md-12
+			.alert.alert-success.voffset4(role="alert", ng-show="adminNotifAppCtrl.showAlert") Service has been added successfully!
+	.row.voffset5(collapse="adminNotifAppCtrl.isCollapsed")
+		.col-md-6.col-md-offset-3
+			img.img-responsive(src= "{{adminNotifAppCtrl.notificationService.src}}")
+			form.voffset3(name="modalnotifappForm", role="form", ng-submit="adminNotifAppCtrl.addApp()")
+				.form-group(ng-class="{ 'has-error': modalnotifappForm.name.$touched && modalnotifappForm.name.$invalid }")
+					input.form-control.input-lg(type="text", name="name", ng-model="adminNotifAppCtrl.notificationService.name", placeholder="New service name",required)
+					input.form-control.input-lg(type="text", name="logo", ng-model="adminNotifAppCtrl.notificationService.logo", placeholder="Service logo path...", required)
+				.col-md-12.btn-group.full-width
+					button.btn.btn-primary.btn-lg.col-md-6(type='submit') Add
+					button.btn.btn-warning.btn-lg.col-md-6(ng-click='adminNotifAppCtrl.isCollapsed = true') Cancel			
+	.row.voffset5
+		.col-md-4(ng-repeat='service in adminNotifAppCtrl.notificationServices | filter:searchText track by $index')
+			div.thumbnail#thumbnailApp
+				.clearfix
+					img.img-responsive(ng-src='{{service.logo}}')
+				div.achieve-name {{service.name}}
+				.btn.btn-default.btn-lg.edit-btn(ng-click="adminNotifAppCtrl.open(service)")
+					span.glyphicon.glyphicon-pencil
+

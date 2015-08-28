@@ -92,6 +92,12 @@ body
 	right 0
 	position absolute
 	transition 0.2s
+	display flex
+	flex-direction row
+	flex-wrap wrap
+	justify-content center
+	align-items baseline
+	align-content space-around	
 	&:before
 		width 0 
 		height 0 
@@ -100,7 +106,7 @@ body
 		border-bottom 20px solid #FFA800
 		content ''
 		margin-top -20px
-		margin-left 170px
+		margin-left 164px
 		position absolute
 .invisible
 	opacity 0
@@ -125,24 +131,19 @@ button
 
 
 .appButton
-	margin 5px
-	display table-cell
-	padding-left 20px
-	padding-bottom 10px
-.row
-	display table-row
-.firstinrow
-	padding-left 10px
-.secondinrow
-	padding-left 10px
-.appName
-	margin-left 5px
-	display table-caption
-	text-align center
-.singleAppBtn
+	border-radius 7px
 	background #fff
 	border none
-	
+.serviceItem
+	margin 10px
+	width 24%
+	order 0
+	flex-grow 0
+	flex-shrink 1
+	flex-basis auto
+	align-self auto
+.appName
+	text-align center	
 
 
 .textBlockNotification
@@ -163,19 +164,7 @@ button
 	text-overflow ellipsis	
 	-webkit-line-clamp 3
 	-webkit-box-orient vertical
-
-
-	// display block
-	// 
-	// max-width 400px
-	// height 55.2px
-	// margin 0 auto
-	// font-size 26px
-	// line-height 1.4
-	// -webkit-line-clamp 3
-	// -webkit-box-orient vertical
-	// overflow hidden
-	// text-overflow ellipsis
+	
 
 @media only screen and (max-width: 640px)
 	#userProfile
@@ -211,3 +200,21 @@ button
 		position fixed
 	.logo
 		width 155px
+
+
+#thumbnailApp
+	display flex
+	flex-direction row
+	flex-wrap nowrap
+	justify-content space-between
+	align-items center
+	align-content stretch
+	text-align center
+	margin-left -10px
+	margin-right -15px
+	color #383838
+	color rgba(56, 56, 56, 0.74)
+	font-weight bold
+#searchblockAdminApp
+	margin-top: 25px;
+	margin-bottom: 25px;

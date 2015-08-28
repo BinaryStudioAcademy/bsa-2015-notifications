@@ -10,24 +10,24 @@ document.getElementById('notificationBtn').addEventListener('click', function() 
     block.classList.toggle('invisible');
 });
 
-document.getElementById('myaccountAppBtn').addEventListener('click', function () {
-    location.href = "/header";
-});
-document.getElementById('pdpAppBtn').addEventListener('click', function () {
-    location.href = "/header";
-});
-document.getElementById('qaAppBtn').addEventListener('click', function () {
-    location.href = "/header";
-});
-document.getElementById('codereviewAppBtn').addEventListener('click', function () {
-    location.href = "/header";
-});
-document.getElementById('hrAppBtn').addEventListener('click', function () {
-    location.href = "/header";
-});
-document.getElementById('feedbacksAppBtn').addEventListener('click', function () {
-    location.href = "/header";
-});
-document.getElementById('accountingAppBtn').addEventListener('click', function () {
-    location.href = "/header";
-});
+// document.getElementById('myaccountAppBtn').addEventListener('click', function () {
+//     location.href = "/header";
+// });
+// document.getElementById('pdpAppBtn').addEventListener('click', function () {
+//     location.href = "/header";
+// });
+// document.getElementById('qaAppBtn').addEventListener('click', function () {
+//     location.href = "/header";
+// });
+// document.getElementById('codereviewAppBtn').addEventListener('click', function () {
+//     location.href = "/header";
+// });
+// document.getElementById('hrAppBtn').addEventListener('click', function () {
+//     location.href = "/header";
+// });
+// document.getElementById('feedbacksAppBtn').addEventListener('click', function () {
+//     location.href = "/header";
+// });
+// document.getElementById('accountingAppBtn').addEventListener('click', function () {
+//     location.href = "/header";
+// });

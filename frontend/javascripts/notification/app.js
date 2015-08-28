@@ -11,6 +11,10 @@ module.exports = angular.module('notifications', ['ngRoute', 'ngResource', 'ngAn
 					templateUrl: './templates/notification/settings.html',
 					controller: 'SettingsController',
 					controllerAs: 'settingsCtrl'
+				.when('/adminnotifapp', {
+					templateUrl: './templates/notification/admin-notification-app.html',
+					controller: 'AdminNotifAppController',
+					controllerAs: 'adminNotifAppCtrl'
 				})
 				.otherwise({
 					redirectTo: '/'

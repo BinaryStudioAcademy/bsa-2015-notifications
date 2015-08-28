@@ -5,6 +5,7 @@ module.exports = function (app) {
 		res.render('index');
 	});
 	app.get('/header', function(req, res){
+		res.header('Access-Control-Allow-Origin', '*');
 		res.render('header');
 	});
 
