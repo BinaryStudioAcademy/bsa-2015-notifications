@@ -7,6 +7,11 @@ module.exports = angular.module('notifications', ['ngRoute', 'ngResource', 'ngAn
 					controller: 'NotificationController',
 					controllerAs: 'notificationCtrl'
 				})
+				.when('/settings', {
+					templateUrl: './templates/notification/settings.html',
+					controller: 'SettingsController',
+					controllerAs: 'settingsCtrl'
+				})
 				.otherwise({
 					redirectTo: '/'
 				});

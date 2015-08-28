@@ -3,8 +3,10 @@ module.exports = function(app) {
 
 
     app.post('/api/settingsnotification', function(req, res) {
-        settingsNotificationRepository.add(req.body);
-        res.send(req.body);
+        settingsNotificationRepository.add(req.body, function(err, data){
+            res.err = err;
+            res.send(data);
+        });
     });
 
     app.get('/api/settingsnotification', function(req, res) {
@@ -15,7 +17,7 @@ module.exports = function(app) {
     });
 
     app.get('/api/settingsnotification/:id', function(req, res) {
-        settingsNotificationRepository.getById(req.params.id, function(err, data) {
+        settingsNotificationRepository.findByUserId(req.params.id, function(err, data) {
             res.err = err;
             res.send(data);
         });
