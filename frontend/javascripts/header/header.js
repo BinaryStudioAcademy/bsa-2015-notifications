@@ -16,7 +16,7 @@ function headerFubction(){
 
     var getNotification = function() {
         var request = new XMLHttpRequest();
-        request.open('GET', 'http://localhost:4033/api/notification', true);
+        request.open('GET', 'http://team.binary-studio.com/app/api/notification', true);
         request.send();
         request.onreadystatechange = function() {
             if (request.readyState != 4) return;
@@ -62,7 +62,7 @@ function headerFubction(){
 
     var getService = function() {
         var request = new XMLHttpRequest();
-        request.open('GET', 'http://localhost:4033/api/notificationservice', true);
+        request.open('GET', 'http://team.binary-studio.com/app/api/notificationservice', true);
         request.send();
         request.onreadystatechange = function() {
             if (request.readyState != 4) return;
