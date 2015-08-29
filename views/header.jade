@@ -19,8 +19,15 @@ html(lang="en")
 				button#notificationBtn
 					img.appsLogo(src="images/bell.png")
 		div#appsBlock.invisible
+			div#appsList
 		div#notificationBlock.invisible
 			ul#notificationList
+			a.noTextDecoration(href="#")
+				div.notifButton Read all
+			a.noTextDecoration(href="http://localhost:4033/#/")
+				div.notifButton Notification page
+			a.noTextDecoration(href="http://localhost:4033/#/settings")
+				div.notifButton App settings
 	script(src="javascripts/headerAll.js")
 	
 

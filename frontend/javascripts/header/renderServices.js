@@ -1,4 +1,4 @@
-var servicesList = document.getElementById("appsBlock");
+var servicesList = document.getElementById("appsList");
 var respArray = [];
 
 var getService = function() {

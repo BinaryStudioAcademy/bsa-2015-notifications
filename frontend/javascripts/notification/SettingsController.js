@@ -35,6 +35,13 @@ function SettingsController($resource) {
                 }
             });
         });
+        angular.forEach(services, function(service){
+            if(!service.setting){
+                service.setting = {};
+                service.setting.toInform = service.toInform;
+                service.setting.sound = service.sound;
+            }
+        });
         return services;
     }
     vm.changeSetting = function(obj){

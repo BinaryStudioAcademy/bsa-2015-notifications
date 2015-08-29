@@ -83,7 +83,13 @@ body
 		margin-top -20px
 		margin-left 245px
 		position absolute
-		
+#appsList
+	display flex
+	flex-direction row
+	flex-wrap wrap
+	justify-content center
+	align-items baseline
+	align-content space-around
 #appsBlock
 	background #FFA800
 	min-height 300px
@@ -91,13 +97,7 @@ body
 	border-radius 20px
 	right 0
 	position absolute
-	transition 0.2s
-	display flex
-	flex-direction row
-	flex-wrap wrap
-	justify-content center
-	align-items baseline
-	align-content space-around	
+	transition 0.2s	
 	&:before
 		width 0 
 		height 0 
@@ -106,7 +106,7 @@ body
 		border-bottom 20px solid #FFA800
 		content ''
 		margin-top -20px
-		margin-left 164px
+		margin-left 170px
 		position absolute
 .invisible
 	opacity 0
@@ -121,7 +121,17 @@ button
 	padding-left 5px
 		
 .liNotification
-	list-style-type none;
+	list-style-type none
+	background white
+	list-style-type none
+	border-radius 10px
+	margin-left 5px
+	margin-right 5px
+	padding 5px
+	margin-bottom 10px
+	-webkit-box-shadow 0px 0px 10px 4px rgba(255,255,255,0.98)
+	-moz-box-shadow 0px 0px 10px 4px rgba(255,255,255,0.98)
+	box-shadow 0px 0px 10px 4px rgba(255,255,255,0.98)
 	
 .notification
 	display flex
@@ -218,3 +228,21 @@ button
 #searchblockAdminApp
 	margin-top: 25px;
 	margin-bottom: 25px;
+	
+.notifButton
+	margin-left 10px
+	margin-right 10px
+	padding 3px
+	height 20px
+	border 1px solid grey
+	border-radius 6px
+	text-align center
+	margin-bottom 3px
+	transition 0.2s	
+	&:hover
+		background white
+		font-size 20px	
+		
+.noTextDecoration
+	text-decoration none
+	
