@@ -10,13 +10,14 @@ body
 	
 .logo
 	height 100%
-.searchBar
+#searchBar
 	border-radius 5px 0 0 5px
 .searchBtn
 	border-radius 0 5px 5px 0
 	border none
 	
 .buttons
+	margin-top 20px
 	margin-right 4px
 	align-self center
 	display flex
@@ -153,8 +154,27 @@ button
 	flex-basis auto
 	align-self auto
 .appName
-	text-align center	
+	text-align center
+		
+#searchBar
+	height: 25px
 
+#searc
+
+.searchItem
+	background-color white
+	border-radius 3px
+	margin-top 3px
+	width: 173px
+	background-color #fff
+	text-align center
+	height 30px
+	border 1px solid black
+	display: flex;
+	align-items: center;
+	justify-content: center
+	&:hover
+		background-color #FFA800
 
 .textBlockNotification
 	display flex
@@ -244,5 +264,14 @@ button
 		font-size 20px	
 		
 .noTextDecoration
+	color black
 	text-decoration none
-	
+	&:hover
+		color black
+		text-decoration none
+	&:active
+		color black
+		text-decoration none
+	&:visited
+		color black
+		text-decoration none
