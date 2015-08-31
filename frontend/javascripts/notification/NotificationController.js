@@ -2,7 +2,7 @@ var app = require('./app');
 
 app.controller('NotificationController', NotificationController);
 
-function NotificationController($resource) {
+function NotificationController($resource, $cookies) {
 
 	var vm = this;
     vm.myInterval = 5000;
@@ -10,16 +10,31 @@ function NotificationController($resource) {
     vm.today = new Date();
     vm.dtStart = null;
     vm.dtEnd = null;
+    vm.userObject = {};
+
+    var serverUserId = $cookies.get('serverUID');
 
 	vm.text = 'notifications';
 	vm.notifications = [];
     vm.notificationServices = [];
 
+    getUser();
     getNotificationServices();
     getNotifications();
+    
+
+    function getUser(){
+        var User = $resource('http://localhost:1337/api/users/?serverUserId='+ serverUserId);
+        var user = User.query(function(res){
+                vm.userObject = res[0];
+            
+        }, function(err){
+            console.log(err);
+        });
+    }
 
 	function getNotifications(){
-	    var Notifications = $resource('/api/notification');
+	    var Notifications = $resource('/api/usernotification/'+ vm.userObject.id );
 	   	var not = Notifications.query(function(res){
 	   		vm.notifications = res;
             for(var i = 0; i<vm.notifications.length; i++){

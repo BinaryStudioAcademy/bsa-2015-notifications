@@ -29,7 +29,7 @@ inputField.addEventListener('keyup', function(e) {
 var getAllUsers = function() {
     var request = new XMLHttpRequest();
     request.open('GET', 'http://localhost:1337/api/users', true);
-   
+    request.withCredentials = true;
     request.send();
     request.onreadystatechange = function() {
         if (request.readyState != 4) return;

@@ -1,4 +1,4 @@
-module.exports = angular.module('notifications', ['ngRoute', 'ngResource', 'ngAnimate', 'ui.bootstrap'])
+module.exports = angular.module('notifications', ['ngRoute', 'ngCookies','ngResource', 'ngAnimate', 'ui.bootstrap'])
 	.config(['$routeProvider', '$resourceProvider', '$httpProvider', '$locationProvider',
 		function($routeProvider, $resourceProvider, $httpProvider, $locationProvider) {
 			$routeProvider
@@ -21,5 +21,6 @@ module.exports = angular.module('notifications', ['ngRoute', 'ngResource', 'ngAn
 					redirectTo: '/'
 				});
 			$resourceProvider.defaults.stripTrailingSlashes = false;
+			$httpProvider.defaults.withCredentials = true;
 		}
 	]);
