@@ -27,18 +27,17 @@ function headerFunction() {
 
     var getUser = function() {
         var request = new XMLHttpRequest();
-        request.open('GET', 'http:team.binary-studio.com/profile/api/users/?serverUserId=' + serverUID, true);
+        request.open('GET', 'http://team.binary-studio.com/profile/api/users/?serverUserId=' + serverUID, true);
         request.withCredentials = true;
         request.send();
         request.onreadystatechange = function() {
             if (request.readyState != 4) return;
             if (request.status != 200) {
-                alert(request.status + ': ' + request.statusText);
             } else {
                 userObject = JSON.parse(request.responseText)[0];
-                avatar.setAttribute("src", 'http:team.binary-studio.com/profile' + userObject.avatar.urlAva);
+                avatar.setAttribute("src", 'http://team.binary-studio.com/profile' + userObject.avatar.urlAva);
                 userName.innerHTML = userObject.name + ' ' + userObject.surname;
-                userLink.setAttribute('href', 'http:team.binary-studio.com/profile');
+                userLink.setAttribute('href', 'http://team.binary-studio.com/profile');
             }
         };
     };
@@ -58,7 +57,6 @@ function headerFunction() {
         request.onreadystatechange = function() {
             if (request.readyState != 4) return;
             if (request.status != 200) {
-                alert(request.status + ': ' + request.statusText);
             } else {
                 respArray = JSON.parse(request.responseText);
                 console.log(respArray);
@@ -106,7 +104,6 @@ function headerFunction() {
         request.onreadystatechange = function() {
             if (request.readyState != 4) return;
             if (request.status != 200) {
-                alert(request.status + ': ' + request.statusText);
             } else {
                 appsArray = JSON.parse(request.responseText);
                 addService(appsArray);
@@ -161,7 +158,6 @@ function headerFunction() {
         request.onreadystatechange = function() {
             if (request.readyState != 4) return;
             if (request.status != 200) {
-                alert(request.status + ': ' + request.statusText);
             } else {
                 usersArray = JSON.parse(request.responseText);
                 console.log(usersArray);
@@ -193,7 +189,7 @@ function headerFunction() {
     var renderItem = function(name, surname, id) {
         var searchItem = document.createElement('a');
         searchItem.className = 'noTextDecoration';
-        var path = 'http://http://team.binary-studio.com/profile/api/users/' + id;
+        var path = 'http://team.binary-studio.com/profile/api/users/' + id;
         searchItem.setAttribute("href", path);
         searchItem.innerHTML = '<div class = "searchItem"><span>' + name + ' ' + surname + '</span></div>';
         searchList.appendChild(searchItem);
