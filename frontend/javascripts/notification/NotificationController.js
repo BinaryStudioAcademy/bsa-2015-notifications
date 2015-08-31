@@ -24,7 +24,7 @@ function NotificationController($resource, $cookies) {
     
 
     function getUser(){
-        var User = $resource('http://localhost:1337/api/users/?serverUserId='+ serverUserId);
+        var User = $resource('http://team.binary-studio.com/profile/api/users/?serverUserId='+ serverUserId);
         var user = User.query(function(res){
                 vm.userObject = res[0];
             
@@ -34,7 +34,7 @@ function NotificationController($resource, $cookies) {
     }
 
 	function getNotifications(){
-	    var Notifications = $resource('/api/usernotification/'+ vm.userObject.id );
+	    var Notifications = $resource('http://team.binary-studio.com/app/api/usernotification/'+ vm.userObject.id );
 	   	var not = Notifications.query(function(res){
 	   		vm.notifications = res;
             for(var i = 0; i<vm.notifications.length; i++){
@@ -51,7 +51,7 @@ function NotificationController($resource, $cookies) {
 	}
 
     function getNotificationServices(){
-        var NotificationServices = $resource('/api/notificationService');
+        var NotificationServices = $resource('http://team.binary-studio.com/app/api/notificationService');
         var notserv = NotificationServices.query(function(res){
             vm.notificationServices = res;
         }, function(err){

@@ -12,7 +12,7 @@ function SettingsController($resource) {
     getServices();
 
     function getServices(){
-        var NotificationServices = $resource('/api/notificationService');
+        var NotificationServices = $resource('http://team.binary-studio.com/app/api/notificationService');
         var notserv = NotificationServices.query(function(res){
             vm.services = res;
             getSettings();
@@ -22,7 +22,7 @@ function SettingsController($resource) {
         });
     }
     function getSettings(){
-        var Settings = $resource('/api/settingsnotification/:id', {id:'@id'});
+        var Settings = $resource('http://team.binary-studio.com/app/api/settingsnotification/:id', {id:'@id'});
         var sett = Settings.query({id: vm.userId}, function(res) {
             vm.services = mixSettings(vm.services, res);
         });
@@ -47,7 +47,7 @@ function SettingsController($resource) {
     vm.changeSetting = function(obj){
         console.log(obj);
         if(obj.setting._id){
-            var Settings = $resource('/api/settingsnotification/'+ obj.setting._id, null, {'update': { method:'PUT' }});
+            var Settings = $resource('http://team.binary-studio.com/app/api/settingsnotification/'+ obj.setting._id, null, {'update': { method:'PUT' }});
             var sett = Settings.update(obj.setting, function(res){
             });
         }else{
@@ -64,7 +64,7 @@ function SettingsController($resource) {
             }else{
                 newSettingsObj.sound = true;
             }
-            var SettingsK = $resource('/api/settingsnotification/');
+            var SettingsK = $resource('http://team.binary-studio.com/app/api/settingsnotification/');
             var settK = SettingsK.save(newSettingsObj, function(res){
                 angular.forEach(vm.services, function(service){
                     if(service.name == res.notificationType){

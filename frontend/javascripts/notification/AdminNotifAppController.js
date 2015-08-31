@@ -9,7 +9,7 @@ app.controller('AdminNotifAppController', function($resource, $modal, $timeout){
 
 	getNotificationServices();
 	function getNotificationServices(){
-        var NotificationServices = $resource('/api/notificationservice');
+        var NotificationServices = $resource('http://team.binary-studio.com/app/api/notificationservice');
         var notserv = NotificationServices.query(function(res){
         	console.log(res);
             ctrl.notificationServices = res;
@@ -19,7 +19,7 @@ app.controller('AdminNotifAppController', function($resource, $modal, $timeout){
     }
 
     ctrl.addApp = function () {
-    	var Apps = $resource('/api/notificationservice', null, {'post': {method: 'POST'}});
+    	var Apps = $resource('http://team.binary-studio.com/app/api/notificationservice', null, {'post': {method: 'POST'}});
     	var app = Apps.post(ctrl.notificationService, function (newApp) {
     		ctrl.notificationServices.push(newApp);
     	}, function(err) {
@@ -44,7 +44,7 @@ app.controller('AdminNotifAppController', function($resource, $modal, $timeout){
         });
 
         modalInstance.result.then(function (updatedNotifApp) {
-              var Notificationservices = $resource('/api/notificationservice/:id', {id: '@id'}, {'update': { method:'PUT' }});
+              var Notificationservices = $resource('http://team.binary-studio.com/app/api/notificationservice/:id', {id: '@id'}, {'update': { method:'PUT' }});
               var notifapp = Notificationservices.update({id: updatedNotifApp._id}, updatedNotifApp);
           });
     };

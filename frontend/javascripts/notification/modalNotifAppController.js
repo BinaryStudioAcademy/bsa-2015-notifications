@@ -24,7 +24,7 @@ app.controller('ModalNotifAppController', function ($modalInstance, $resource, n
 
     vm.delete = function (){
         var index = vm.notificationServices.indexOf(notificationService);
-        var NotifServices = $resource('/api/notificationservice/:id', {id: '@id'}, {'delete': { method:'DELETE' }});
+        var NotifServices = $resource('http://team.binary-studio.com/app/api/notificationservice/:id', {id: '@id'}, {'delete': { method:'DELETE' }});
         var notifapp = NotifServices.delete({id: vm.notificationService._id}, function(res){
                 console.log("Deleted successfully!");
             }, function(err){
