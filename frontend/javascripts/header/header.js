@@ -1,4 +1,8 @@
 function headerFunction() {
+    document.getElementById('BSheaderLogo').addEventListener('click', function () {
+        location.href = "http://binary-studio.com/";
+    });
+
     document.getElementById('appsBtn').addEventListener('click', function() {
         document.getElementById("notificationBlock").classList.add('invisible');
         var block = document.getElementById("appsBlock");
