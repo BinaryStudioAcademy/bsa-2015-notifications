@@ -8,7 +8,11 @@ var SettingsNotificaitionRepository = function(){
 
 SettingsNotificaitionRepository.prototype = new Repository();
 
-SettingsNotificaitionRepository.prototype.findByCriteria = function() {
+SettingsNotificaitionRepository.prototype.findByUserId = function(userId, callback) {
+
+	var model = this.model;
+	var query = model.find({userId: userId});
+	query.exec(callback);
 
 };
 

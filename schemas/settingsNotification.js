@@ -7,7 +7,8 @@ var settingsNotificationSchema = new Schema({
 		
 		userId: String,
 		notificationType: String,
-		toInform: Boolean
+		toInform: Boolean,
+		sound: Boolean
 	
 });
 

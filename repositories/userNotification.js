@@ -8,8 +8,10 @@ var UserNotificaitionRepository = function(){
 
 UserNotificaitionRepository.prototype = new Repository();
 
-UserNotificaitionRepository.prototype.findByCriteria = function() {
-
+UserNotificaitionRepository.prototype.getByUserId = function(id, callback) {
+	var model = this.model;
+	var query = model.find({userId: id, isRead: false});
+	query.exec(callback);
 };
 
 module.exports = new UserNotificaitionRepository();

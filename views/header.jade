@@ -1,20 +1,36 @@
-div.header
-	img.logo(src="http://academy.binary-studio.com/resources/logo.png")
-	div.buttons
-		input.searchBar(placeholder="Search")
-		button.searchBtn Filter
-		div#userProfile
-			img.avatar(src="https://avatars1.githubusercontent.com/u/1202528?v=3&s=460")
-			span#userName John PAPA
-		button#appsBtn
-			img.appsLogo(src="http://team.binary-studio.com/app/images/Thumbnails.png")
-		button#notificationBtn
-			img.appsLogo(src="http://team.binary-studio.com/app/images/bell.png")
-div#appsBlock.invisible
-div#notificationBlock.invisible
-	ul#notificationList
-
-
-
-
+doctype html
+html(lang="en")
+	head
+		meta(name='viewport', content='user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width')
+		title Header
+		link(href="images/favicon.png", rel="icon" type="image/png")
+		link(href="styles/css/style.css", rel="stylesheet")
+	body
+		div.header
+			img.logo(src="http://academy.binary-studio.com/resources/logo.png")
+			div
+				div.buttons
+					input#searchBar(placeholder="Search")
+					button.searchBtn Filter
+					a#userLink.noTextDecoration
+						div#userProfile
+							img#avatar.avatar
+							span#userName
+					button#appsBtn
+						img.appsLogo(src="images/Thumbnails.png")
+					button#notificationBtn
+						img.appsLogo(src="images/bell.png")
+				div#search
+		div#appsBlock.invisible
+			div#appsList
+		div#notificationBlock.invisible
+			ul#notificationList
+			a.noTextDecoration(href="#")
+				div.notifButton Read all
+			a.noTextDecoration(href="http://localhost:4033/#/")
+				div.notifButton Notification page
+			a.noTextDecoration(href="http://localhost:4033/#/settings")
+				div.notifButton App settings
+	script(src="javascripts/headerAll.js")
+	
 
