@@ -1,4 +1,5 @@
 var app = require('./app');
+var socketHandler = require('../units/SocketHandler');
 
 app.controller('NotificationController', NotificationController);
 
@@ -17,6 +18,8 @@ function NotificationController($resource) {
 
     getNotificationServices();
     getNotifications();
+
+    socketHandler.sendMessage('message_on_connection', 'qwe');
 
 	function getNotifications(){
 	    var Notifications = $resource('/api/notification');

@@ -17,7 +17,7 @@ var getUser = function() {
     request.onreadystatechange = function() {
         if (request.readyState != 4) return;
         if (request.status != 200) {
-            alert(request.status + ': ' + request.statusText);
+            // alert(request.status + ': ' + request.statusText);
         } else {
             userObject = JSON.parse(request.responseText);
             console.log(userObject);
