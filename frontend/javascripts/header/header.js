@@ -28,6 +28,14 @@ function headerFunction() {
     var avatar = document.getElementById('avatar');
     var userLink = document.getElementById('userprofileBtnInBox');
 
+    document.getElementById('userProfileInBoxBtn').addEventListener('click', function () {
+        location.href = "http://team.binary-studio.com/profile";
+    });
+    document.getElementById('logOutButton').addEventListener('click', function () {
+        location.href = "http://team.binary-studio.com/auth/logout";
+    });
+
+
     function getCookie(name) {
         var matches = document.cookie.match(new RegExp(
             "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -50,7 +58,7 @@ function headerFunction() {
                 userObject = JSON.parse(request.responseText)[0];
                 avatar.setAttribute("src", 'http://team.binary-studio.com/profile' + userObject.avatar.urlAva);
                 userName.innerHTML = userObject.name + ' ' + userObject.surname;
-                userLink.setAttribute('href', 'http://team.binary-studio.com/profile');
+                //userLink.setAttribute('href', 'http://team.binary-studio.com/profile');
             }
         };
     };
