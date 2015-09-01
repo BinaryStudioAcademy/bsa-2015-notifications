@@ -5,19 +5,28 @@ function headerFunction() {
 
     document.getElementById('appsBtn').addEventListener('click', function() {
         document.getElementById("notificationBlock").classList.add('invisible');
+        document.getElementById("logOutBox").classList.add('invisible');
         var block = document.getElementById("appsBlock");
         block.classList.toggle('invisible');
     }, false);
 
     document.getElementById('notificationBtn').addEventListener('click', function() {
         document.getElementById("appsBlock").classList.add('invisible');
+        document.getElementById("logOutBox").classList.add('invisible');
         var block = document.getElementById("notificationBlock");
+        block.classList.toggle('invisible');
+    });
+
+     document.getElementById('userLink').addEventListener('click', function() {
+        document.getElementById("appsBlock").classList.add('invisible');
+        document.getElementById("notificationBlock").classList.add('invisible');
+        var block = document.getElementById("logOutBox");
         block.classList.toggle('invisible');
     });
 
     var userName = document.getElementById("userName");
     var avatar = document.getElementById('avatar');
-    var userLink = document.getElementById('userLink');
+    var userLink = document.getElementById('userprofileBtnInBox');
 
     function getCookie(name) {
         var matches = document.cookie.match(new RegExp(

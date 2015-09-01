@@ -36,7 +36,7 @@ body
 	align-items center
 	height 30px
 	border none
-	border-radius 5px
+	border-radius 5px 0px 0px 5px
 	background #FFA800
 	cursor pointer
 	color white
@@ -70,6 +70,7 @@ body
 	margin-left 10px
 
 #notificationBlock
+	padding-top 12px
 	z-index 1
 	background #FFA800
 	max-height 800px
@@ -87,7 +88,7 @@ body
 		border-right 20px solid transparent
 		border-bottom 20px solid #FFA800
 		content ''
-		margin-top -15px
+		margin-top -28px
 		margin-left 245px
 		position absolute
 #appsList
@@ -129,6 +130,7 @@ button
 	padding-left 5px
 		
 .liNotification
+	margin-top 10px
 	list-style-type none
 	background white
 	list-style-type none
@@ -167,7 +169,7 @@ button
 	background-color white
 	border-radius 3px
 	margin-top 3px
-	width: 173px
+	width: 195px
 	background-color #fff
 	text-align center
 	height 30px
@@ -263,4 +265,46 @@ button
 
 .specialNotifBtn
 	margin 10px
-	
+
+
+#logOutBtn
+	margin-left 1px
+	padding 3px
+	border none
+	height 30px
+	width 30px
+	border-radius 0px 5px 5px 0px
+	background #ffa800
+	cursor pointer
+.userprofileAndLogoutImg
+	height 100%
+	border 1px solid #ffa800
+	border-radius 5px
+.logOutButtons
+	align-items center
+	flex-direction row-reverse
+	justify-content center
+	display flex
+#logOutBox
+	height 40px
+	margin-top -14px
+	display flex
+	z-index 1
+	background #DDD
+	max-height 800px
+	width 140px
+	border-radius 0px 0px 5px 5px
+	right 103px
+	position: absolute
+	transition .2s
+	padding-bottom 7px
+	align-items flex-end
+	justify-content space-around
+#userProfineInBoxBtn
+	padding 3px
+	border none
+	height 30px
+	width 30px
+	border-radius 5px
+	background #ffa800
+	cursor pointer
