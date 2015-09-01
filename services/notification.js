@@ -10,7 +10,9 @@ NotificationService.prototype.getAll = function(callback){
 		async.map(data, function(notification, asyncCallback){
 			var notificationObject = notification.toObject();
 			notificationServiceRepository.findByServiceType(notificationObject.serviceType, function(err, type){
-				notificationObject.serviceLogo = type.logo;
+				if (type){
+					notificationObject.serviceLogo = type.logo;
+				}
 				asyncCallback(null, notificationObject);
 			});
 		}, function (errFromIterator, results){
