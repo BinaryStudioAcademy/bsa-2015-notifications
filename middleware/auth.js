@@ -22,6 +22,6 @@ module.exports = function(req, res, next){
 		var cookies = new Cookies(req, res);
 		cookies.set('referer', current_url);
 
-		res.redirect('http://localhost:2020/');
+		res.redirect('http://team.binary-studio.com/auth');
     }
 }; 
