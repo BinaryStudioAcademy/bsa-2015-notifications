@@ -20,14 +20,12 @@ function NotificationController($resource, $cookies) {
 
     getUser();
     getNotificationServices();
-    getNotifications();
-    
 
     function getUser(){
         var User = $resource('http://team.binary-studio.com/profile/api/users/?serverUserId='+ serverUserId);
         var user = User.query(function(res){
-                vm.userObject = res[0];
-            
+            vm.userObject = res[0];
+            getNotifications();
         }, function(err){
             console.log(err);
         });
@@ -38,11 +36,6 @@ function NotificationController($resource, $cookies) {
 	   	var not = Notifications.query(function(res){
 	   		vm.notifications = res;
             for(var i = 0; i<vm.notifications.length; i++){
-                // for(var j = 0; j<vm.notificationServices.length; j++){
-                //     if(vm.notifications[i].serviceType == vm.notificationServices[j].name){
-                //         vm.notifications[i].serviceType = vm.notificationServices[j];
-                //     }
-                // }
                 vm.notifications[i].time = new Date(vm.notifications[i].time);
             }
     	}, function(err){

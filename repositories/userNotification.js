@@ -10,7 +10,7 @@ UserNotificaitionRepository.prototype = new Repository();
 
 UserNotificaitionRepository.prototype.getByUserId = function(id, callback) {
 	var model = this.model;
-	var query = model.find({userId: id, isRead: false});
+	var query = model.find({userId: id/*, isRead: false*/});
 	query.exec(callback);
 };
 

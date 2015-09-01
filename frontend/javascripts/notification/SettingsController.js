@@ -2,14 +2,24 @@ var app = require('./app');
 
 app.controller('SettingsController', SettingsController);
 
-function SettingsController($resource) {
+function SettingsController($resource, $cookies) {
 
 	var vm = this;
-    vm.userId = 1;
     vm.services = [];
     vm.settings = [];
+    var serverUserId = $cookies.get('serverUID');
 
-    getServices();
+    getUser();
+
+    function getUser(){
+        var User = $resource('http://team.binary-studio.com/profile/api/users/?serverUserId='+ serverUserId);
+        var user = User.query(function(res){
+            vm.userId = res[0].id;
+            getServices();
+        }, function(err){
+            console.log(err);
+        });
+    }
 
     function getServices(){
         var NotificationServices = $resource('http://team.binary-studio.com/app/api/notificationService');
