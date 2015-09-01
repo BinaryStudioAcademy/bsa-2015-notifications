@@ -15,8 +15,7 @@ app.controller('ModalNotifAppController', function ($modalInstance, $resource, n
       vm.notificationService.toInform = vm.tmpToiform;
       vm.notificationService.sound = vm.tmpSound;
       delete vm.notificationService.__v;
-      delete vm.notificationService._id;
-      
+
       $modalInstance.close(vm.notificationService);
     };
 

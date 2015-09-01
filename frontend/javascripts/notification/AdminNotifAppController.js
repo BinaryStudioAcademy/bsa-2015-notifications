@@ -44,8 +44,10 @@ app.controller('AdminNotifAppController', function($resource, $modal, $timeout){
         });
 
         modalInstance.result.then(function (updatedNotifApp) {
-              var Notificationservices = $resource('http://team.binary-studio.com/app/api/notificationservice/:id', {id: '@id'}, {'update': { method:'PUT' }});
-              var notifapp = Notificationservices.update({id: updatedNotifApp._id}, updatedNotifApp);
+                var id = updatedNotifApp._id;
+                delete updatedNotifApp._id;
+                var Notificationservices = $resource('http://team.binary-studio.com/app/api/notificationservice/:id', {id: '@id'}, {'update': { method:'PUT' }});
+                var notifapp = Notificationservices.update({id: id}, updatedNotifApp);
           });
     };
 });
