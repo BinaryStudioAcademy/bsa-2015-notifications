@@ -10,6 +10,14 @@ var SocketHandler = function(){
 		self.onDisconnect();
 	});
 
+	this.socket.on('welcome', function(data){
+		console.log('welcome', data);
+	});
+
+	this.socket.on('title', function(data){
+		console.log('title', data);
+	});
+
 };
 
 SocketHandler.prototype.onConnect = function(){

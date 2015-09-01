@@ -1,6 +1,6 @@
 .col-md-2.col-md-offset-2
 	h1 Filters
-	input.form-control(type="text" placeholder="Search by title" ng-model="searchText.title")
+	input.form-control(type="text" placeholder="Search by title" ng-model="notificationCtrl.searchText.title" ng-change="notificationCtrl.onChange()")
 	br
 	.col-md-12(ng-repeat="service in notificationCtrl.notificationServices")
 		input(type="checkbox" ng-click="notificationCtrl.includeService(service)") 

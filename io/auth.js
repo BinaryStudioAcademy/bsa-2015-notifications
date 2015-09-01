@@ -38,6 +38,7 @@ module.exports = function (options) {
 		data.cookie = parseCookie(auth, data.headers.cookie || '');
 		data.token = data.cookie;
 		verifyToken(data.token, function(err, decoded){
+			data.user = decoded;
 			accept(err, decoded);
 		});
 

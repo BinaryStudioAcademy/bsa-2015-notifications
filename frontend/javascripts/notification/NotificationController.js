@@ -78,6 +78,10 @@ function NotificationController($resource) {
         return;
     };
 
+    vm.onChange = function(){
+        socketHandler.sendMessage('title', vm.searchText.title);
+    };
+
     vm.clear = function(){
         vm.dtStart = null;
         vm.dtEnd = null;
