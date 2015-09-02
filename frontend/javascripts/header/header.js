@@ -2,6 +2,9 @@ function headerFunction() {
     document.getElementById('BSheaderLogo').addEventListener('click', function () {
         location.href = "http://binary-studio.com/";
     });
+    document.getElementById('searchBtn').addEventListener('click', function () {
+        location.href = "http://team.binary-studio.com/profile/#/search";
+    });
 
     document.getElementById('appsBtn').addEventListener('click', function() {
         document.getElementById("notificationBlock").classList.add('invisible');
@@ -244,6 +247,25 @@ function headerFunction() {
 
         this.socket.on('notification', function(data){
             console.log('notification', data);
+
+            var d = new Date(data.time);
+            Number.prototype.padLeft = function(base, chr) {
+                var len = (String(base || 10).length - String(this).length) + 1;
+                return len > 0 ? new Array(len).join(chr || '0') + this : this;
+            };
+            data.time = [(d.getMonth() + 1).padLeft(),
+                d.getDate().padLeft(),
+                d.getFullYear()
+            ].join('/') + ' ' +
+                [d.getHours().padLeft(),
+                d.getMinutes().padLeft(),
+                d.getSeconds().padLeft()
+            ].join(':');
+
+            document.getElementById('notificationCounter').innerHTML = parseInt(document.getElementById('notificationCounter').innerHTML) + 1;
+
+            renderNotification(data);
+
         });
 
     };
