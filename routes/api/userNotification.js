@@ -1,4 +1,5 @@
 var userNotificationRepository = require('../../repositories/userNotification');
+var userNotificationService = require('../../services/usernotification');
 module.exports = function(app) {
 
 
@@ -16,7 +17,7 @@ module.exports = function(app) {
     });
 
     app.get('/api/usernotification/:id', function(req, res) {
-        userNotificationRepository.getById(req.params.id, function(err, data) {
+        userNotificationService.getByUserId(req.params.id, function(err, data) {
             res.err = err;
             res.send(data);
         });

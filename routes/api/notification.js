@@ -1,18 +1,37 @@
 var notificationRepository = require('../../repositories/notification');
 var notificationService = require('../../services/notification');
+var userNotificationRepository = require('../../repositories/userNotification');
+var appContext = require('../../units/appContext');
 
 module.exports = function(app) {
 
 
     app.post('/api/notification', function(req, res) {
+        var usersArray = req.body.users;
+        console.log(usersArray);
+        delete req.body.users;
         var now = new Date();
         req.body.time = now;
-        notificationRepository.add(req.body);
-        res.send(req.body);
+        notificationRepository.add(req.body, function(err, data) {
+            for(var i = 0; i<usersArray.length; i++){
+                var newObj = {};
+                newObj.userId = usersArray[i];
+                newObj.notificationId = data._id;
+                newObj.isRead = false;
+                console.log(newObj);
+                userNotificationRepository.add(newObj);
+                console.log('user_'+ usersArray[i]);
+                // appContext.io.to('user_'+ usersArray[i]).emit('notification', data);
+                appContext.io.sockets.emit('notification', data);
+            }
+            res.err = err;
+            res.send(data);
+        });
     });
 
     app.get('/api/notification', function(req, res) {
         notificationService.getAll(function(err, data) {
+            res.header('Access-Control-Allow-Origin', '*');
             res.err = err;
             res.send(data);
         });

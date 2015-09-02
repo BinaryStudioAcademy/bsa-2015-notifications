@@ -1,5 +1,6 @@
 var jsonwebtoken = require('jsonwebtoken');
 var Cookies = require('cookies');
+var config = require('../config/');
 
 module.exports = function(req, res, next){
     var cookies = new Cookies(req, res);
@@ -17,11 +18,11 @@ module.exports = function(req, res, next){
         });
     } else {
 
-        var current_url = req.protocol + '://' + req.get('host') + req.url;
+        var current_url = req.protocol + '://' + config.auth.refererHost + req.url;
 
 		var cookies = new Cookies(req, res);
 		cookies.set('referer', current_url);
 
-		res.redirect('http://localhost:2020/');
+		res.redirect(config.loginserver.host);
     }
 }; 

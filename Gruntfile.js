@@ -79,14 +79,14 @@ module.exports = function(grunt) {
 					dest: 'public/images'
 				}]
 			},
-			// js: {
-			// 	files: [{
-			// 		expand: true,
-			// 		cwd: 'frontend/javascripts/',
-			// 		src: ['**'],
-			// 		dest: 'public/javascripts/'
-			// 	}]
-			// },
+			js: {
+				files: [{
+					expand: true,
+					cwd: 'frontend/javascripts/header',
+					src: ['**'],
+					dest: 'public/javascripts/'
+				}]
+			},
 			fonts: {
 				files: [{
 					expand: true,
@@ -110,10 +110,10 @@ module.exports = function(grunt) {
 		},
 
 		browserify: {
-			header: {
-				dest: 'public/javascripts/headerAll.js',
-				src: ['frontend/javascripts/header/*.js']
-			},
+			// header: {
+			// 	dest: 'public/javascripts/headerAll.js',
+			// 	src: ['frontend/javascripts/header/*.js']
+			// },
 			main :{
 				dest: 'public/javascripts/main.js',
 				src: ['frontend/javascripts/notification/*.js']
@@ -131,7 +131,8 @@ module.exports = function(grunt) {
 					'bower_components/angular-resource/angular-resource.js',
 					'bower_components/angular-animate/angular-animate.js',
 					'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-					'bower_components/socket.io-client/socket.io.js'
+					'bower_components/socket.io-client/socket.io.js',
+					'bower_components/angular-cookies/angular-cookies.js'
 				],
 				dest: 'public/javascripts/libs.js',
 			},

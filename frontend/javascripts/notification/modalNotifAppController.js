@@ -14,6 +14,7 @@ app.controller('ModalNotifAppController', function ($modalInstance, $resource, n
       vm.notificationService.name = vm.tmpName;
       vm.notificationService.toInform = vm.tmpToiform;
       vm.notificationService.sound = vm.tmpSound;
+      delete vm.notificationService.__v;
 
       $modalInstance.close(vm.notificationService);
     };
@@ -24,7 +25,7 @@ app.controller('ModalNotifAppController', function ($modalInstance, $resource, n
 
     vm.delete = function (){
         var index = vm.notificationServices.indexOf(notificationService);
-        var NotifServices = $resource('/api/notificationservice/:id', {id: '@id'}, {'delete': { method:'DELETE' }});
+        var NotifServices = $resource(window.notificationserver.host +'/api/notificationservice/:id', {id: '@id'}, {'delete': { method:'DELETE' }});
         var notifapp = NotifServices.delete({id: vm.notificationService._id}, function(res){
                 console.log("Deleted successfully!");
             }, function(err){

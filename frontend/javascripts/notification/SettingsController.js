@@ -2,17 +2,27 @@ var app = require('./app');
 
 app.controller('SettingsController', SettingsController);
 
-function SettingsController($resource) {
+function SettingsController($resource, $cookies) {
 
 	var vm = this;
-    vm.userId = 1;
     vm.services = [];
     vm.settings = [];
+    var serverUserId = $cookies.get('serverUID');
 
-    getServices();
+    getUser();
+
+    function getUser(){
+        var User = $resource(window.userprofileserver.host + '/api/users/?serverUserId='+ serverUserId);
+        var user = User.query(function(res){
+            vm.userId = res[0].id;
+            getServices();
+        }, function(err){
+            console.log(err);
+        });
+    }
 
     function getServices(){
-        var NotificationServices = $resource('/api/notificationService');
+        var NotificationServices = $resource(window.notificationserver.host + '/api/notificationService');
         var notserv = NotificationServices.query(function(res){
             vm.services = res;
             getSettings();
@@ -22,7 +32,7 @@ function SettingsController($resource) {
         });
     }
     function getSettings(){
-        var Settings = $resource('/api/settingsnotification/:id', {id:'@id'});
+        var Settings = $resource(window.notificationserver.host + '/api/settingsnotification/:id', {id:'@id'});
         var sett = Settings.query({id: vm.userId}, function(res) {
             vm.services = mixSettings(vm.services, res);
         });
@@ -47,7 +57,7 @@ function SettingsController($resource) {
     vm.changeSetting = function(obj){
         console.log(obj);
         if(obj.setting._id){
-            var Settings = $resource('/api/settingsnotification/'+ obj.setting._id, null, {'update': { method:'PUT' }});
+            var Settings = $resource(window.notificationserver.host + '/api/settingsnotification/'+ obj.setting._id, null, {'update': { method:'PUT' }});
             var sett = Settings.update(obj.setting, function(res){
             });
         }else{
@@ -64,7 +74,7 @@ function SettingsController($resource) {
             }else{
                 newSettingsObj.sound = true;
             }
-            var SettingsK = $resource('/api/settingsnotification/');
+            var SettingsK = $resource(window.notificationserver.host + '/api/settingsnotification/');
             var settK = SettingsK.save(newSettingsObj, function(res){
                 angular.forEach(vm.services, function(service){
                     if(service.name == res.notificationType){

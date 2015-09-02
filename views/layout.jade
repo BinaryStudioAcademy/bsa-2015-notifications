@@ -6,10 +6,19 @@ html(lang="en")
 		link(href="images/favicon.png", rel="icon" type="image/png")
 		link(href="styles/css/libs.css", rel="stylesheet")
 		link(href="styles/css/style.css", rel="stylesheet")
+		//- link(href="http://team.binary-studio.com/app/styles/css/style.css", rel="stylesheet")
 	body
+		div#header
 		block content
+		script.
+			window.loginserver = {host: '#{loginserver}'}
+		script.
+			window.notificationserver = {host: '#{notificationserver}'}
+		script.
+			window.userprofileserver = {host: '#{userprofileserver}'}
 		script(src="javascripts/libs.js")
 		script(src='javascripts/main.js')
-
+		//- script(src="http://team.binary-studio.com/app/javascripts/header.js")
+		script(src="http://localhost:4033/javascripts/header.js")
 		script.
 			angular.bootstrap(document, ['notifications']);

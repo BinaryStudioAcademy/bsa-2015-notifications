@@ -3,7 +3,7 @@ var socketHandler = require('../units/SocketHandler');
 
 app.controller('NotificationController', NotificationController);
 
-function NotificationController($resource) {
+function NotificationController($resource, $cookies) {
 
 	var vm = this;
     vm.myInterval = 5000;
@@ -11,26 +11,34 @@ function NotificationController($resource) {
     vm.today = new Date();
     vm.dtStart = null;
     vm.dtEnd = null;
+    vm.userObject = {};
+
+    var serverUserId = $cookies.get('serverUID');
 
 	vm.text = 'notifications';
 	vm.notifications = [];
     vm.notificationServices = [];
 
+    getUser();
     getNotificationServices();
-    getNotifications();
+
+    function getUser(){
+        var User = $resource(window.userprofileserver.host + '/api/users/?serverUserId='+ serverUserId);
+        var user = User.query(function(res){
+            vm.userObject = res[0];
+            getNotifications();
+        }, function(err){
+            console.log(err);
+        });
+    }
 
     socketHandler.sendMessage('message_on_connection', 'qwe');
 
 	function getNotifications(){
-	    var Notifications = $resource('/api/notification');
+	    var Notifications = $resource(window.notificationserver.host + '/api/usernotification/'+ vm.userObject.id );
 	   	var not = Notifications.query(function(res){
 	   		vm.notifications = res;
             for(var i = 0; i<vm.notifications.length; i++){
-                // for(var j = 0; j<vm.notificationServices.length; j++){
-                //     if(vm.notifications[i].serviceType == vm.notificationServices[j].name){
-                //         vm.notifications[i].serviceType = vm.notificationServices[j];
-                //     }
-                // }
                 vm.notifications[i].time = new Date(vm.notifications[i].time);
             }
     	}, function(err){
@@ -39,7 +47,7 @@ function NotificationController($resource) {
 	}
 
     function getNotificationServices(){
-        var NotificationServices = $resource('/api/notificationService');
+        var NotificationServices = $resource(window.notificationserver.host + '/api/notificationService');
         var notserv = NotificationServices.query(function(res){
             vm.notificationServices = res;
         }, function(err){

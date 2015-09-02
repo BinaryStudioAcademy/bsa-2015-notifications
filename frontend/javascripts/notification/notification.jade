@@ -23,7 +23,7 @@
 				i.glyphicon.glyphicon-calendar
 	button.btn.btn-danger(ng-click="notificationCtrl.clear()") Clear
 .col-md-5
-	.panel.panel-default(ng-repeat="notification in notificationCtrl.notifications | filter: notificationCtrl.serviceFilter | filter: notificationCtrl.dateFilter | filter:searchText | orderBy: 'time'")
+	.panel.panel-default(ng-repeat="notification in notificationCtrl.notifications | filter: notificationCtrl.serviceFilter | filter: notificationCtrl.dateFilter | filter: notificationCtrl.searchText | orderBy: 'time'")
 		.panel-body
 			img.img-responsive.col-md-2(ng-src="{{notification.serviceLogo}}")
 			.col-md-10

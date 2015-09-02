@@ -9,6 +9,7 @@ module.exports = function(app) {
 
     app.get('/api/notificationService', function(req, res) {
         notificationServiceRepository.getAll(function(err, data) {
+            res.header('Access-Control-Allow-Origin', '*');
             res.err = err;
             res.send(data);
         });
