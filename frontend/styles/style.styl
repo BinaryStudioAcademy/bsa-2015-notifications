@@ -7,24 +7,27 @@ body
 	background black
 	top 0
 	padding 5px 15px 5px 15px
-	
-.logo
-	height 100%
-	cursor pointer
+.header 	
+	.logo
+		height 100%
+		cursor pointer
 #searchBar
 	height: 30px
 	border-radius 5px 0 0 5px
 	padding-left 10px
 	padding-right 10px
-.searchBtn
-	border-radius 0 5px 5px 0
-	border none
 	
-.buttons
-	margin-top 20px
-	margin-right 4px
-	align-self center
-	display flex
+.header 
+	.searchBtn
+		border-radius 0 5px 5px 0
+		border none
+	
+.header 
+	.buttons
+		margin-top 20px
+		margin-right 4px
+		align-self center
+		display flex
 
 #userName
 	margin-left 20px
@@ -41,11 +44,12 @@ body
 	cursor pointer
 	color white
 	margin-left 10px
-.avatar
-	height 92%
-	border 1px solid #FFA800
-	border-radius 5px
-	
+.header 
+	.avatar
+		height 92%
+		border 1px solid #FFA800
+		border-radius 5px
+		
 #appsBtn
 	padding 3px
 	border none
@@ -56,8 +60,9 @@ body
 	cursor pointer
 	margin-left 10px
 	
-.appsLogo
-	width 100%
+.header 	
+	.appsLogo
+		width 100%
 	
 #notificationBtn
 	padding 3px
@@ -250,20 +255,21 @@ button
 	transition 0.2s	
 	&:hover
 		background white
-		font-size 20px	
+		font-size 20px
 		
-.noTextDecoration
-	color black
-	text-decoration none
-	&:hover
+.header 
+	.noTextDecoration
 		color black
 		text-decoration none
-	&:active
-		color black
-		text-decoration none
-	&:visited
-		color black
-		text-decoration none
+		&:hover
+			color black
+			text-decoration none
+		&:active
+			color black
+			text-decoration none
+		&:visited
+			color black
+			text-decoration none
 
 .specialNotifBtn
 	margin 10px
@@ -278,15 +284,19 @@ button
 // 	border-radius 0px 5px 5px 0px
 // 	background #ffa800
 // 	cursor pointer
-.userprofileAndLogoutImg
-	height 100%
-	border 1px solid #ffa800
-	border-radius 5px
-.logOutButtons
-	align-items center
-	flex-direction row-reverse
-	justify-content center
-	display flex
+.headerElements 
+	.userprofileAndLogoutImg
+		height 100%
+		border 1px solid #ffa800
+		border-radius 5px
+	
+.headerElements 
+	.logOutButtons
+		align-items center
+		flex-direction row-reverse
+		justify-content center
+		display flex
+		
 #logOutBox
 	height 40px
 	margin-top -14px
@@ -310,14 +320,16 @@ button
 	border-radius 5px
 	background #ffa800
 	cursor pointer
-.userprofileAndLogoutBtn
-	padding 3px
-	border none
-	height 30px
-	width 30px
-	border-radius 5px
-	background #ffa800
-	cursor pointer
+	
+.headerElements 
+	.userprofileAndLogoutBtn
+		padding 3px
+		border none
+		height 30px
+		width 30px
+		border-radius 5px
+		background #ffa800
+		cursor pointer
 #notificationCounter
 	background-color red
 	position absolute
@@ -329,3 +341,5 @@ button
 	min-width 22px
 	height 22px
 	text-align center
+
+// .headerElements
