@@ -8,14 +8,13 @@ module.exports = function (app) {
 			userprofileserver:config.userprofileserver.host
 		});
 	});
-	app.get('/header', {
-			loginserver:config.loginserver.host,
-			notificationserver:config.notificationserver.host,
-			userprofileserver:config.userprofileserver.host
-		}, 
-		function(req, res){
+	app.get('/header', function(req, res){
 			res.header('Access-Control-Allow-Origin', '*');
-			res.render('header');
+			res.render('header', {
+				loginserver:config.loginserver.host,
+				notificationserver:config.notificationserver.host,
+				userprofileserver:config.userprofileserver.host
+			});
 	});
 
 };
