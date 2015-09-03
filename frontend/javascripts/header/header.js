@@ -38,6 +38,14 @@ function headerFunction() {
         location.href = window.loginserver.host + "/logout";
     });
 
+    var notificationCounter = document.getElementById('notificationCounter');
+    var readAllButton = document.getElementById('readAllBtn');
+    readAllButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        notificationCounter.classList.add('invisible');
+        respArray = [];
+
+    });
 
     function getCookie(name) {
         var matches = document.cookie.match(new RegExp(
