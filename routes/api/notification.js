@@ -13,6 +13,7 @@ module.exports = function(app) {
         delete req.body.users;
         var now = new Date();
         req.body.time = now;
+        console.log(appContext.io.sockets.adapter.rooms); 
         notificationRepository.add(req.body, function(err, data) {
             for(var i = 0; i<usersArray.length; i++){
                 var newObj = {};
@@ -21,6 +22,10 @@ module.exports = function(app) {
                 newObj.isRead = false;
                 // console.log(newObj);
                 userNotificationRepository.add(newObj);
+                console.log('user_'+ usersArray[i]);
+                appContext.io.to('user_'+ usersArray[i]).emit('notification', data);
+                // appContext.io.sockets.emit('notification', data);
+
                 // console.log('user_'+ usersArray[i]);
                 notificationServiceRepository.findByServiceType(data.serviceType, function(err, type){
                     var populatedNotif = {};
