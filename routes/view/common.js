@@ -10,11 +10,7 @@ module.exports = function (app) {
 	});
 	app.get('/header', function(req, res){
 			res.header('Access-Control-Allow-Origin', '*');
-			res.render('header', {
-				loginserver:config.loginserver.host,
-				notificationserver:config.notificationserver.host,
-				userprofileserver:config.userprofileserver.host
-			});
+			res.render('header');
 	});
 
 };

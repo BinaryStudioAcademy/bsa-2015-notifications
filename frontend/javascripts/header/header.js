@@ -99,6 +99,23 @@ function headerFunction() {
         };
     };
 
+    var getConfig = function() {
+        var request = new XMLHttpRequest();
+        request.open('GET', './api/config', true);
+        request.send();
+        request.onreadystatechange = function() {
+            if (request.readyState != 4) return;
+            if (request.status != 200) {
+            } else {
+                var responseConf = JSON.parse(request.responseText);
+
+                window.loginserver = {host: responseConf.loginserver};
+                window.notificationserver = {host: responseConf.notificationserver};
+                window.userprofileserver = {host: responseConf.userprofileserver};
+            }
+        };
+    };
+
     // document.getElementById('notificationBtn').addEventListener('click', getNotification, false);
     var renderNotification = function(renderItem) {
         var newNotification = document.createElement('li');
