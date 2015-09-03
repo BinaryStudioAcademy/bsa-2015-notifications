@@ -5,7 +5,7 @@ request.open('GET', window.notificationserver.host + '/header', true);
     request.onreadystatechange = function() {
         if (request.readyState != 4) return;
         if (request.status != 200) {
-            console.logß(request.status + ': ' + request.statusText);
+            console.log(request.status + ': ' + request.statusText);
         } else {
            var headerHtml = request.responseText;
            var headerContainer = document.getElementById('header');
