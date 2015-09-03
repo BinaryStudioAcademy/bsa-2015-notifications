@@ -105,7 +105,21 @@ function headerFunction() {
 
         var notificationList = document.getElementById("notificationList");
         var respArray = [];
-
+        var getNotification = function() {
+                var request = new XMLHttpRequest();
+                request.open('GET', window.notificationserver.host + '/api/usernotification/' + userObject.id, true);
+                request.send();
+                request.onreadystatechange = function() {
+                    if (request.readyState != 4) return;
+                    if (request.status != 200) {
+                    } else {
+                        respArray = JSON.parse(request.responseText);
+                        console.log(respArray);
+                        document.getElementById('notificationCounter').innerHTML = respArray.length;
+                        addNotification(respArray);
+                    }
+                };
+            };
 
         // document.getElementById('notificationBtn').addEventListener('click', getNotification, false);
         var renderNotification = function(renderItem) {
