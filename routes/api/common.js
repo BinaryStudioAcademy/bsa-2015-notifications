@@ -6,7 +6,8 @@ module.exports = function(app) {
 		res.json({
 			loginserver: config.loginserver.host,
 			notificationserver: config.notificationserver.host,
-			userprofileserver: config.userprofileserver.host
+			userprofileserver: config.userprofileserver.host,
+			socketserver: config.sockets.host
 		});
 	});
 };
