@@ -125,7 +125,7 @@ function headerFunction() {
         var renderNotification = function(renderItem) {
             var newNotification = document.createElement('li');
             newNotification.className = 'liNotification';
-            newNotification.innerHTML = '<div class="notification"><img src="' + renderItem.serviceLogo + '" class="imgApp"><div = class="textBlockNotification"><h5 class="titleNotification">' + renderItem.title + '</h5><span class="textNotification">' + renderItem.text + '</span><span>' + renderItem.time + '</span></div></div>';
+            newNotification.innerHTML = '<div class="notification"><img src="' + renderItem.serviceLogo + '" class="imgApp" width='+50+' height='+50+'><div class="textBlockNotification"><h5 class="titleNotification">' + renderItem.title + '</h5><span class="textNotification">' + renderItem.text + '</span><span class="dateNotificationInBox">' + renderItem.time + '</span></div></div>';
             notificationList.insertBefore(newNotification, notificationList.firstChild);
         };
 
@@ -172,7 +172,7 @@ function headerFunction() {
         var renderServices = function(renderItem) {
             var newService = document.createElement('div');
             newService.className = 'serviceItem';
-            newService.innerHTML = '<button class="appButton"><img src="' + renderItem.logo + '"></button><div class="appName"><span>' + renderItem.name + '</span></div>';
+            newService.innerHTML = '<button class="appButton"><img src="' + renderItem.logo + '" width='+50+' height='+50+'></button><div class="appName"><span>' + renderItem.name + '</span></div>';
             servicesList.insertBefore(newService, servicesList.firstChild);
         };
 
