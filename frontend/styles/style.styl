@@ -9,24 +9,27 @@ body
 	background #333
 	top 0
 	padding 5px 15px 5px 15px
-	
-.logo
-	height 100%
-	cursor pointer
+.header 	
+	.logo
+		height 100%
+		cursor pointer
 #searchBar
 	height: 30px
 	border-radius 5px
 	padding-left 10px
 	padding-right 10px
-// .searchBtn
-// 	border-radius 0 5px 5px 0
-// 	border none
 	
-.buttons
-	margin-top 20px
-	margin-right 4px
-	align-self center
-	display flex
+.header 
+	.searchBtn
+		border-radius 0 5px 5px 0
+		border none
+	
+.header 
+	.buttons
+		margin-top 20px
+		margin-right 4px
+		align-self center
+		display flex
 
 #userName
 	margin-left 20px
@@ -43,11 +46,12 @@ body
 	cursor pointer
 	color white
 	margin-left 10px
-.avatar
-	height 92%
-	border 1px solid #FFA800
-	border-radius 5px
-	
+.header 
+	.avatar
+		height 92%
+		border 1px solid #FFA800
+		border-radius 5px
+		
 #appsBtn
 	padding 3px
 	border none
@@ -58,8 +62,9 @@ body
 	cursor pointer
 	margin-left 10px
 	
-.appsLogo
-	width 100%
+.header 	
+	.appsLogo
+		width 100%
 	
 #notificationBtn
 	padding 3px
@@ -74,11 +79,13 @@ body
 #notificationBlock
 	padding-top 12px
 	z-index 3
-	background #FFA800
+	background #fff
 	max-height 800px
 	// overflow overlay
 	width 300px
-	border-radius 20px
+	border 1px solid #E0DDDA
+	border-radius 3px
+	box-shadow 0 0 10px rgba(0,0,0,0.5)
 	right 0
 	position absolute
 	transition 0.2s
@@ -88,7 +95,7 @@ body
 		height 0 
 		border-left 20px solid transparent
 		border-right 20px solid transparent
-		border-bottom 20px solid #FFA800
+		border-bottom 20px solid #fff
 		content ''
 		margin-top -28px
 		margin-left 245px
@@ -97,15 +104,17 @@ body
 	display flex
 	flex-direction row
 	flex-wrap wrap
-	justify-content center
+	justify-content space-between
 	align-items baseline
 	align-content space-around
 #appsBlock
 	z-index 3
-	background #FFA800
 	min-height 300px
+	background #fff
 	width 265px
-	border-radius 20px
+	border-radius 3px
+	border 1px solid #E0DDDA
+	box-shadow 0 0 10px rgba(0,0,0,0.5)
 	right 0
 	position absolute
 	transition 0.2s	
@@ -114,7 +123,7 @@ body
 		height 0 
 		border-left 20px solid transparent
 		border-right 20px solid transparent
-		border-bottom 20px solid #FFA800
+		border-bottom 20px solid #fff
 		content ''
 		margin-top -15px
 		margin-left 170px
@@ -130,13 +139,18 @@ body
 		
 #notificationList
 	padding-left 5px
+	height 380px
+	width 299px
+	overflow scroll
+	overflow-x hidden
 		
 .liNotification
+	border-bottom 1px solid #d6dadc
 	margin-top 10px
 	list-style-type none
 	background white
 	list-style-type none
-	border-radius 10px
+	border-radius 3px
 	margin-left 5px
 	margin-right 5px
 	padding 5px
@@ -164,8 +178,15 @@ body
 	flex-shrink 1
 	flex-basis auto
 	align-self auto
+	
+.serviceItem
+	&:hover
+		outline-offset 10px
+		outline 1px solid #E0DDDA
+
 .appName
 	text-align center
+	color #404040
 
 .searchItem
 	padding-right 10px
@@ -192,10 +213,11 @@ body
 	flex-grow 1
 	align-items flex-end
 .titleNotification
+	font-weight 600
 	width 100%
 	margin-bottom 3px
 	margin-top 3px
-	
+	color rgba(56,56,56,0.74)
 .textNotification
 	display block
 	display -webkit-box
@@ -204,6 +226,12 @@ body
 	text-overflow ellipsis	
 	-webkit-line-clamp 3
 	-webkit-box-orient vertical
+.dateNotificationInBox
+	font-family verdana
+	font-weight 600
+	font-style italic
+	font-size 8pt
+	color rgba(56,56,56,0.74)
 	
 
 @media only screen and (max-width: 640px)
@@ -254,43 +282,39 @@ body
 	transition 0.2s	
 	&:hover
 		background white
-		font-size 20px	
+		font-size 20px
 		
-.noTextDecoration
-	color black
-	text-decoration none
-	&:hover
+.header 
+	.noTextDecoration
 		color black
 		text-decoration none
-	&:active
-		color black
-		text-decoration none
-	&:visited
-		color black
-		text-decoration none
+		&:hover
+			color black
+			text-decoration none
+		&:active
+			color black
+			text-decoration none
+		&:visited
+			color black
+			text-decoration none
 
 .specialNotifBtn
 	margin 10px
 
 
-// #logOutBtn
-// 	margin-left 1px
-// 	padding 3px
-// 	border none
-// 	height 30px
-// 	width 30px
-// 	border-radius 0px 5px 5px 0px
-// 	background #ffa800
-// 	cursor pointer
-.userprofileAndLogoutImg
-	height 100%
-	border 1px solid #ffa800
-	border-radius 5px
-.logOutButtons
-	align-items center
-	flex-direction row-reverse
-	justify-content center
-	display flex
+.headerElements 
+	.userprofileAndLogoutImg
+		height 100%
+		border 1px solid #ffa800
+		border-radius 5px
+	
+.headerElements 
+	.logOutButtons
+		align-items center
+		flex-direction row-reverse
+		justify-content center
+		display flex
+		
 #logOutBox
 	height 40px
 	margin-top -14px
@@ -314,14 +338,16 @@ body
 	border-radius 5px
 	background #ffa800
 	cursor pointer
-.userprofileAndLogoutBtn
-	padding 3px
-	border none
-	height 30px
-	width 30px
-	border-radius 5px
-	background #ffa800
-	cursor pointer
+	
+.headerElements 
+	.userprofileAndLogoutBtn
+		padding 3px
+		border none
+		height 30px
+		width 30px
+		border-radius 5px
+		background #ffa800
+		cursor pointer
 #notificationCounter
 	background-color red
 	position absolute
@@ -333,3 +359,14 @@ body
 	min-width 22px
 	height 22px
 	text-align center
+	
+#notificationBlock  
+	::-webkit-scrollbar
+		width 10px
+	::-webkit-scrollbar-track
+		-webkit-box-shadow inset 0 0 6px rgba(0,0,0,0.3)
+	::-webkit-scrollbar-thumb
+		background-color #C3BEBE
+		outline 1px solid #828B93
+
+// .headerElements
