@@ -3,7 +3,7 @@ function headerFunction() {
 
     var getConfig = function(callback) {
         var request = new XMLHttpRequest();
-        request.open('GET', '/api/config', true);
+        request.open('GET', 'http://team.binary-studio.com/app/api/config', true);
         request.send();
         request.onreadystatechange = function() {
             if (request.readyState != 4) return;
@@ -191,8 +191,6 @@ function headerFunction() {
         inputField.addEventListener('focus', function() {
             {
                 getAllUsers();
-
-                console.log(getAllUsers);
             }
         });
         inputField.addEventListener('keyup', function(e) {
