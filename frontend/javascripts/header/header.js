@@ -3,7 +3,7 @@ function headerFunction() {
 
     var getConfig = function(callback) {
         var request = new XMLHttpRequest();
-        request.open('GET', '/app/api/config', true);
+        request.open('GET', '/api/config', true);
         request.send();
         request.onreadystatechange = function() {
             if (request.readyState != 4) return;
@@ -23,11 +23,11 @@ function headerFunction() {
     getConfig(function(){
 
         document.getElementById('BSheaderLogo').addEventListener('click', function () {
-            location.href = "http://binary-studio.com/";
+            location.href = "http://team.binary-studio.com/";
         });
-        document.getElementById('searchBtn').addEventListener('click', function () {
-            location.href = "http://team.binary-studio.com/profile/#/search";
-        });
+        // document.getElementById('searchBtn').addEventListener('click', function () {
+        //     location.href = "http://team.binary-studio.com/profile/#/search";
+        // });
 
         document.getElementById('appsBtn').addEventListener('click', function() {
             document.getElementById("notificationBlock").classList.add('invisible');
@@ -240,15 +240,15 @@ function headerFunction() {
         var renderSearchResult = function(resultArrey) {
             searchList.innerHTML = '';
             resultArrey.forEach(function(obj) {
-                renderItem(obj.name, obj.surname, obj.id);
+                renderItem(obj.name, obj.surname, obj.id, obj.avatar.urlAva);
             });
         };
-        var renderItem = function(name, surname, id) {
+        var renderItem = function(name, surname, id, avatar) {
             var searchItem = document.createElement('a');
             searchItem.className = 'noTextDecoration';
             var path = window.userprofileserver.host + '/api/users/' + id;
             searchItem.setAttribute("href", path);
-            searchItem.innerHTML = '<div class = "searchItem"><span>' + name + ' ' + surname + '</span></div>';
+            searchItem.innerHTML = '<div class = "searchItem"><img style="height: 100%" src="'+ window.userprofileserver.host + avatar +'"><span>' + name + ' ' + surname + '</span></div>';
             searchList.appendChild(searchItem);
         };
         var getInputValue = function() {
@@ -259,7 +259,7 @@ function headerFunction() {
 
             var self = this;
 
-            this.socket = io(window.socketserver + ':4033');
+            this.socket = io(window.notificationserver.host);
             this.socket.on('connect', function(){
                 self.onConnect();
             });

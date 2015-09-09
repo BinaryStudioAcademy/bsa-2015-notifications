@@ -1,10 +1,12 @@
 body
 	margin 0
 .header
+	z-index 3
+	position relative
 	justify-content space-between
 	display flex
 	height 70px
-	background black
+	background #333
 	top 0
 	padding 5px 15px 5px 15px
 	
@@ -13,12 +15,12 @@ body
 	cursor pointer
 #searchBar
 	height: 30px
-	border-radius 5px 0 0 5px
+	border-radius 5px
 	padding-left 10px
 	padding-right 10px
-.searchBtn
-	border-radius 0 5px 5px 0
-	border none
+// .searchBtn
+// 	border-radius 0 5px 5px 0
+// 	border none
 	
 .buttons
 	margin-top 20px
@@ -71,7 +73,7 @@ body
 
 #notificationBlock
 	padding-top 12px
-	z-index 1
+	z-index 3
 	background #FFA800
 	max-height 800px
 	// overflow overlay
@@ -99,7 +101,7 @@ body
 	align-items baseline
 	align-content space-around
 #appsBlock
-	z-index 1
+	z-index 3
 	background #FFA800
 	min-height 300px
 	width 265px
@@ -120,7 +122,7 @@ body
 .invisible
 	opacity 0
 	display none
-button
+.hdr-button
 	cursor pointer
 	transition all .1s linear
 	&:active
@@ -166,6 +168,8 @@ button
 	text-align center
 
 .searchItem
+	padding-right 10px
+	padding-left 10px
 	background-color white
 	border-radius 3px
 	margin-top 3px
@@ -174,9 +178,9 @@ button
 	text-align center
 	height 30px
 	border 1px solid black
-	display: flex
-	align-items: center
-	justify-content: center
+	display flex
+	align-items center
+	justify-content space-between
 	z-index 1
 	position relative
 	&:hover
@@ -291,7 +295,7 @@ button
 	height 40px
 	margin-top -14px
 	display flex
-	z-index 1
+	z-index 4
 	background #DDD
 	max-height 800px
 	width 140px
