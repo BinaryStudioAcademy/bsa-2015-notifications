@@ -15,6 +15,7 @@ function headerFunction() {
                 window.loginserver = {host: responseConf.loginserver};
                 window.notificationserver = {host: responseConf.notificationserver};
                 window.userprofileserver = {host: responseConf.userprofileserver};
+                window.socketserver = {host: responseConf.socketserver};
             }
             callback();
         };
@@ -257,7 +258,7 @@ function headerFunction() {
 
             var self = this;
 
-            this.socket = io(window.notificationserver.host);
+            this.socket = io(window.socketserver.host);
             this.socket.on('connect', function(){
                 self.onConnect();
             });
