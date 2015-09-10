@@ -13,5 +13,10 @@ UserNotificaitionRepository.prototype.getByUserId = function(id, callback) {
 	var query = model.find({userId: id/*, isRead: false*/});
 	query.exec(callback);
 };
+UserNotificaitionRepository.prototype.deleteById = function(id, callback){
+	var model = this.model;
+	var query = model.remove({notificationId: id});
+	query.exec(callback);
+};
 
 module.exports = new UserNotificaitionRepository();

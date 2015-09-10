@@ -1,4 +1,5 @@
 var notificationRepository = require('../repositories/notification');
+var userNotificationRepository = require('../repositories/userNotification');
 var notificationServiceRepository = require('../repositories/notificationService');
 var async = require('../bower_components/async/dist/async');
 
@@ -21,6 +22,13 @@ NotificationService.prototype.getAll = function(callback){
 	                } 
 	                callback(null, results);
 	       });
+	});
+};
+NotificationService.prototype.deleteById = function(id, callback){
+	notificationRepository.delete(id, function(err, data){
+		userNotificationRepository.deleteById(id, function(e, d){
+			callback(null, "Deleted successfully.");
+		});
 	});
 };
 NotificationService.prototype.generateNotification = function() {

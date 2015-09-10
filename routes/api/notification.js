@@ -74,7 +74,11 @@ module.exports = function(app) {
     });
 
     app.delete('/api/notification/:id', function(req, res) {
-        notificationRepository.delete(req.params.id, function(err, data) {
+        // notificationRepository.delete(req.params.id, function(err, data) {
+        //     res.err = err;
+        //     res.send(data);
+        // });
+        notificationService.deleteById(req.params.id, function(err, data) {
             res.err = err;
             res.send(data);
         });
