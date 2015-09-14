@@ -258,7 +258,7 @@ function headerFunction() {
 
             var self = this;
 
-            this.socket = io.connect(window.socketserver.host);
+            this.socket = io.(window.socketserver.host);
             this.socket.on('connect', function(){
                 self.onConnect();
             });

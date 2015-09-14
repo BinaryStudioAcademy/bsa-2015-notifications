@@ -2,7 +2,7 @@ var SocketHandler = function(){
 
 	var self = this;
 
-	this.socket = io(window.notificationserver.host);
+	this.socket = io(window.socketserver.host);
 	this.socket.on('connect', function(){
 		self.onConnect();
 	});
