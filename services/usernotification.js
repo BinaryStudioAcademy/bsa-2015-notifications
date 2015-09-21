@@ -20,6 +20,7 @@ NotificationService.prototype.getByUserId = function(id, callback){
 					newObj.sound = res.sound;
 					newObj.serviceType = res.serviceType;
 					newObj.images = res.images;
+					newObj.isRead = notification.isRead;
 					if(type){
 						newObj.serviceLogo = type.logo;
 					}

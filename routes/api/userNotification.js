@@ -4,7 +4,6 @@ module.exports = function(app) {
 
 
     app.post('/api/usernotification', function(req, res) {
-        console.log('KuKu');
         userNotificationRepository.add(req.body);
         res.send(req.body);
     });
@@ -24,10 +23,14 @@ module.exports = function(app) {
     });
 
     app.put('/api/usernotification/:id', function(req, res) {
-       userNotificationRepository.update(req.params.id, req.body, function(err, data) {
-            res.err = err;
-            res.send(data);
-        });
+       // userNotificationRepository.update(req.params.id, req.body, function(err, data) {
+       //      res.err = err;
+       //      res.send(data);
+       //  });
+        userNotificationRepository.updateAllByUserId(req.params.id, req.body, function(err, data) {
+             res.err = err;
+             res.send(data);
+        });    
     });
 
     app.delete('/api/usernotification/:id', function(req, res) {

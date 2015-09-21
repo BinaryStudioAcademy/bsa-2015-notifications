@@ -1,5 +1,5 @@
 var app = require('./app');
-var socketHandler = require('../units/SocketHandler');
+// var socketHandler = require('../units/SocketHandler');
 
 app.controller('NotificationController', NotificationController);
 
@@ -32,7 +32,7 @@ function NotificationController($resource, $cookies) {
         });
     }
 
-    socketHandler.sendMessage('message_on_connection', 'qwe');
+    // socketHandler.sendMessage('message_on_connection', 'qwe');
 
 	function getNotifications(){
 	    var Notifications = $resource(window.notificationserver.host + '/api/usernotification/'+ vm.userObject.id );
@@ -86,9 +86,9 @@ function NotificationController($resource, $cookies) {
         return;
     };
 
-    vm.onChange = function(){
-        socketHandler.sendMessage('title', vm.searchText.title);
-    };
+    // vm.onChange = function(){
+    //     socketHandler.sendMessage('title', vm.searchText.title);
+    // };
 
     vm.clear = function(){
         vm.dtStart = null;

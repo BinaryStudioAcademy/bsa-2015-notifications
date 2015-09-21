@@ -18,5 +18,10 @@ UserNotificaitionRepository.prototype.deleteById = function(id, callback){
 	var query = model.remove({notificationId: id});
 	query.exec(callback);
 };
+UserNotificaitionRepository.prototype.updateAllByUserId = function(id, body, callback){
+	var model = this.model;
+	var query = model.update({userId: id}, body, { multi: true });
+	query.exec(callback);
+};
 
 module.exports = new UserNotificaitionRepository();

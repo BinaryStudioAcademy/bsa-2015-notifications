@@ -67,8 +67,23 @@ function headerFunction() {
         readAllButton.addEventListener('click', function (event) {
             event.preventDefault();
             notificationCounter.classList.add('invisible');
-            respArray = [];
-
+            notificationCounter.innerHTML = 0;
+            var notReadList = document.getElementsByClassName('notRead');
+            Array.prototype.forEach.call(notReadList, function(elem) {
+                elem.classList.remove('notRead');
+            });
+            var request = new XMLHttpRequest();
+            request.open('PUT', window.notificationserver.host + '/api/usernotification/' + userObject.id, true);
+            request.withCredentials = true;
+            request.setRequestHeader('Content-Type', 'application/json');
+            request.send(JSON.stringify({isRead: true}));
+            request.onreadystatechange = function() {
+                if (request.readyState != 4) return;
+                if (request.status != 200) {
+                }else {
+                    console.log(request.responseText);
+                }
+            };
         });
 
         function getCookie(name) {
@@ -106,6 +121,7 @@ function headerFunction() {
 
         var notificationList = document.getElementById("notificationList");
         var respArray = [];
+        var counter = 0;
         var getNotification = function() {
                 var request = new XMLHttpRequest();
                 request.open('GET', window.notificationserver.host + '/api/usernotification/' + userObject.id, true);
@@ -116,7 +132,15 @@ function headerFunction() {
                     } else {
                         respArray = JSON.parse(request.responseText);
                         console.log(respArray);
-                        document.getElementById('notificationCounter').innerHTML = respArray.length;
+                        respArray.forEach(function(notification){
+                            if(!notification.isRead){
+                                counter++;
+                            }
+                        });
+                        document.getElementById('notificationCounter').innerHTML = counter;
+                        if(counter){    
+                            document.getElementById('notificationCounter').classList.remove('invisible');
+                        }
                         addNotification(respArray);
                     }
                 };
@@ -126,6 +150,9 @@ function headerFunction() {
         var renderNotification = function(renderItem) {
             var newNotification = document.createElement('li');
             newNotification.className = 'liNotification';
+            if(!renderItem.isRead){
+                newNotification.classList.add('notRead');
+            }
             newNotification.innerHTML = '<div class="notification"><img src="' + renderItem.serviceLogo + '" class="imgApp" width='+50+' height='+50+'><div class="textBlockNotification"><h5 class="titleNotification">' + renderItem.title + '</h5><span class="textNotification">' + renderItem.text + '</span><span class="dateNotificationInBox">' + renderItem.time + '</span></div></div>';
             notificationList.insertBefore(newNotification, notificationList.firstChild);
         };
@@ -292,6 +319,7 @@ function headerFunction() {
                 ].join(':');
 
                 document.getElementById('notificationCounter').innerHTML = parseInt(document.getElementById('notificationCounter').innerHTML) + 1;
+                document.getElementById('notificationCounter').classList.remove('invisible');
 
                 renderNotification(data);
 
