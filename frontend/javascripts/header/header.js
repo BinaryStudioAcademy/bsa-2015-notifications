@@ -31,24 +31,24 @@ function headerFunction() {
         // });
 
         document.getElementById('appsBtn').addEventListener('click', function() {
-            document.getElementById("notificationBlock").classList.add('invisible');
-            document.getElementById("logOutBox").classList.add('invisible');
+            document.getElementById("notificationBlock").classList.add('hdr-invisible');
+            document.getElementById("logOutBox").classList.add('hdr-invisible');
             var block = document.getElementById("appsBlock");
-            block.classList.toggle('invisible');
+            block.classList.toggle('hdr-invisible');
         }, false);
 
         document.getElementById('notificationBtn').addEventListener('click', function() {
-            document.getElementById("appsBlock").classList.add('invisible');
-            document.getElementById("logOutBox").classList.add('invisible');
+            document.getElementById("appsBlock").classList.add('hdr-invisible');
+            document.getElementById("logOutBox").classList.add('hdr-invisible');
             var block = document.getElementById("notificationBlock");
-            block.classList.toggle('invisible');
+            block.classList.toggle('hdr-invisible');
         });
 
          document.getElementById('userLink').addEventListener('click', function() {
-            document.getElementById("appsBlock").classList.add('invisible');
-            document.getElementById("notificationBlock").classList.add('invisible');
+            document.getElementById("appsBlock").classList.add('hdr-invisible');
+            document.getElementById("notificationBlock").classList.add('hdr-invisible');
             var block = document.getElementById("logOutBox");
-            block.classList.toggle('invisible');
+            block.classList.toggle('hdr-invisible');
         });
 
         var userName = document.getElementById("userName");
@@ -66,12 +66,12 @@ function headerFunction() {
         var readAllButton = document.getElementById('readAllBtn');
         readAllButton.addEventListener('click', function (event) {
             event.preventDefault();
-            notificationCounter.classList.add('invisible');
+            notificationCounter.classList.add('hdr-invisible');
             notificationCounter.innerHTML = 0;
-            var notReadList = document.getElementsByClassName('notRead');
-            Array.prototype.forEach.call(notReadList, function(elem) {
-                elem.classList.remove('notRead');
-            });
+            var notReadList = document.querySelectorAll('.hdr-notRead');
+            for(var i = 0; i<notReadList.length; i++){
+                notReadList[i].classList.remove('hdr-notRead');
+            }
             var request = new XMLHttpRequest();
             request.open('PUT', window.notificationserver.host + '/api/usernotification/' + userObject.id, true);
             request.withCredentials = true;
@@ -139,7 +139,7 @@ function headerFunction() {
                         });
                         document.getElementById('notificationCounter').innerHTML = counter;
                         if(counter){    
-                            document.getElementById('notificationCounter').classList.remove('invisible');
+                            document.getElementById('notificationCounter').classList.remove('hdr-invisible');
                         }
                         addNotification(respArray);
                     }
@@ -149,11 +149,11 @@ function headerFunction() {
         // document.getElementById('notificationBtn').addEventListener('click', getNotification, false);
         var renderNotification = function(renderItem) {
             var newNotification = document.createElement('li');
-            newNotification.className = 'liNotification';
+            newNotification.className = 'hdr-liNotification';
             if(!renderItem.isRead){
-                newNotification.classList.add('notRead');
+                newNotification.classList.add('hdr-notRead');
             }
-            newNotification.innerHTML = '<div class="notification"><img src="' + renderItem.serviceLogo + '" class="imgApp" width='+50+' height='+50+'><div class="textBlockNotification"><h5 class="titleNotification">' + renderItem.title + '</h5><span class="textNotification">' + renderItem.text + '</span><span class="dateNotificationInBox">' + renderItem.time + '</span></div></div>';
+            newNotification.innerHTML = '<div class="hdr-notification"><img src="' + renderItem.serviceLogo + '" class="hdr-imgApp" width='+50+' height='+50+'><div class="hdr-textBlockNotification"><h5 class="hdr-titleNotification">' + renderItem.title + '</h5><span class="hdr-textNotification">' + renderItem.text + '</span><span class="hdr-dateNotificationInBox">' + renderItem.time + '</span></div></div>';
             notificationList.insertBefore(newNotification, notificationList.firstChild);
         };
 
@@ -199,8 +199,8 @@ function headerFunction() {
         // document.getElementById('appsBtn').addEventListener('click', getService, false);
         var renderServices = function(renderItem) {
             var newService = document.createElement('div');
-            newService.className = 'serviceItem';
-            newService.innerHTML = '<button class="appButton"><img src="' + renderItem.logo + '" width='+50+' height='+50+'></button><div class="appName"><span>' + renderItem.name + '</span></div>';
+            newService.className = 'hdr-serviceItem';
+            newService.innerHTML = '<button class="hdr-appButton"><img src="' + renderItem.logo + '" width='+50+' height='+50+'></button><div class="hdr-appName"><span>' + renderItem.name + '</span></div>';
             servicesList.insertBefore(newService, servicesList.firstChild);
         };
 
@@ -271,10 +271,10 @@ function headerFunction() {
         };
         var renderItem = function(name, surname, id, avatar) {
             var searchItem = document.createElement('a');
-            searchItem.className = 'noTextDecoration';
+            searchItem.className = 'hdr-noTextDecoration';
             var path = window.userprofileserver.host + '/api/users/' + id;
             searchItem.setAttribute("href", path);
-            searchItem.innerHTML = '<div class = "searchItem"><img style="height: 100%" src="'+ window.userprofileserver.host + avatar +'"><span>' + name + ' ' + surname + '</span></div>';
+            searchItem.innerHTML = '<div class = "hdr-searchItem"><img style="height: 100%" src="'+ window.userprofileserver.host + avatar +'"><span>' + name + ' ' + surname + '</span></div>';
             searchList.appendChild(searchItem);
         };
         var getInputValue = function() {
@@ -319,7 +319,7 @@ function headerFunction() {
                 ].join(':');
 
                 document.getElementById('notificationCounter').innerHTML = parseInt(document.getElementById('notificationCounter').innerHTML) + 1;
-                document.getElementById('notificationCounter').classList.remove('invisible');
+                document.getElementById('notificationCounter').classList.remove('hdr-invisible');
 
                 renderNotification(data);
 

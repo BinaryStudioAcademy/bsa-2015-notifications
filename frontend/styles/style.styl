@@ -1,6 +1,6 @@
 body
 	margin 0
-.header
+.hdr-header
 	z-index 3
 	position relative
 	justify-content space-between
@@ -9,8 +9,8 @@ body
 	background #333
 	top 0
 	padding 5px 15px 5px 15px
-.header 	
-	.logo
+.hdr-header 	
+	.hdr-logo
 		height 100%
 		cursor pointer
 #searchBar
@@ -19,13 +19,13 @@ body
 	padding-left 10px
 	padding-right 10px
 	
-.header 
-	.searchBtn
+.hdr-header 
+	.hdr-searchBtn
 		border-radius 0 5px 5px 0
 		border none
 	
-.header 
-	.buttons
+.hdr-header 
+	.hdr-buttons
 		margin-top 20px
 		margin-right 4px
 		align-self center
@@ -46,8 +46,8 @@ body
 	cursor pointer
 	color white
 	margin-left 10px
-.header 
-	.avatar
+.hdr-header 
+	.hdr-avatar
 		height 92%
 		border 1px solid #FFA800
 		border-radius 5px
@@ -62,8 +62,8 @@ body
 	cursor pointer
 	margin-left 10px
 	
-.header 	
-	.appsLogo
+.hdr-header 	
+	.hdr-appsLogo
 		width 100%
 	
 #notificationBtn
@@ -128,7 +128,7 @@ body
 		margin-top -15px
 		margin-left 170px
 		position absolute
-.invisible
+.hdr-invisible
 	opacity 0
 	display none
 .hdr-button
@@ -144,7 +144,7 @@ body
 	overflow scroll
 	overflow-x hidden
 		
-.liNotification
+.hdr-liNotification
 	border-bottom 1px solid #d6dadc
 	margin-top 10px
 	list-style-type none
@@ -159,18 +159,18 @@ body
 	-moz-box-shadow 0px 0px 10px 4px rgba(255,255,255,0.98)
 	box-shadow 0px 0px 10px 4px rgba(255,255,255,0.98)
 	
-.notification
+.hdr-notification
 	display flex
 	margin-top 10px
-.imgApp
+.hdr-imgApp
 	align-self center
 
 
-.appButton
+.hdr-appButton
 	border-radius 7px
 	background #fff
 	border none
-.serviceItem
+.hdr-serviceItem
 	margin 10px
 	width 24%
 	order 0
@@ -178,17 +178,15 @@ body
 	flex-shrink 1
 	flex-basis auto
 	align-self auto
-	
-.serviceItem
 	&:hover
 		outline-offset 10px
 		outline 1px solid #E0DDDA
 
-.appName
+.hdr-appName
 	text-align center
 	color #404040
 
-.searchItem
+.hdr-searchItem
 	padding-right 10px
 	padding-left 10px
 	background-color white
@@ -207,18 +205,18 @@ body
 	&:hover
 		background-color #FFA800
 
-.textBlockNotification
+.hdr-textBlockNotification
 	display flex
 	flex-direction column
 	flex-grow 1
 	align-items flex-end
-.titleNotification
+.hdr-titleNotification
 	font-weight 600
 	width 100%
 	margin-bottom 3px
 	margin-top 3px
 	color rgba(56,56,56,0.74)
-.textNotification
+.hdr-textNotification
 	display block
 	display -webkit-box
 	max-height 55.2px
@@ -226,7 +224,7 @@ body
 	text-overflow ellipsis	
 	-webkit-line-clamp 3
 	-webkit-box-orient vertical
-.dateNotificationInBox
+.hdr-dateNotificationInBox
 	font-family verdana
 	font-weight 600
 	font-style italic
@@ -241,7 +239,7 @@ body
 		display none
 
 @media only screen and (max-width: 500px)
-	.header
+	.hdr-header
 		justify-content flex-end
 	#searchBar
 		padding-left 10px
@@ -249,7 +247,7 @@ body
 		padding-right 0px
 	#userName
 		display none
-	.logo
+	.hdr-logo
 		display none
 
 
@@ -270,7 +268,7 @@ body
 	margin-top: 25px
 	margin-bottom: 25px
 	
-.notifButton
+.hdr-notifButton
 	margin-left 10px
 	margin-right 10px
 	padding 3px
@@ -284,8 +282,8 @@ body
 		background white
 		font-size 20px
 		
-.header 
-	.noTextDecoration
+.hdr-header 
+	.hdr-noTextDecoration
 		color black
 		text-decoration none
 		&:hover
@@ -298,7 +296,7 @@ body
 			color black
 			text-decoration none
 
-.specialNotifBtn
+.hdr-specialNotifBtn
 	margin 10px
 	opacity 0.5
 	transition all 0.2s linear
@@ -306,14 +304,14 @@ body
 		opacity 1
 
 
-.headerElements 
-	.userprofileAndLogoutImg
+.hdr-headerElements 
+	.hdr-userprofileAndLogoutImg
 		height 100%
 		border 1px solid #ffa800
 		border-radius 5px
 	
-.headerElements 
-	.logOutButtons
+.hdr-headerElements 
+	.hdr-logOutButtons
 		align-items center
 		flex-direction row-reverse
 		justify-content center
@@ -343,8 +341,8 @@ body
 	background #ffa800
 	cursor pointer
 	
-.headerElements 
-	.userprofileAndLogoutBtn
+.hdr-headerElements 
+	.hdr-userprofileAndLogoutBtn
 		padding 3px
 		border none
 		height 30px
@@ -372,7 +370,7 @@ body
 	::-webkit-scrollbar-thumb
 		background-color #C3BEBE
 		outline 1px solid #828B93
-.notRead
+.hdr-notRead
 	background-color #FFE7BA
 	border-radius 14px
 // .headerElements
