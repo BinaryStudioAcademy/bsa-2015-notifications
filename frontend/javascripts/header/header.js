@@ -25,8 +25,8 @@ function headerFunction() {
                 callback();
             };
             script.src = window.notificationserver.host + '/javascripts/socket.io.js';
-            body.insertBefore(script, document.getElementsByTagName('script')[0]);
-            
+            // body.insertBefore(script, document.getElementsByTagName('script')[0]);
+            body.appendChild(script);
 
         };
     };
