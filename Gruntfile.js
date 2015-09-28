@@ -85,6 +85,12 @@ module.exports = function(grunt) {
 					cwd: 'frontend/javascripts/header',
 					src: ['**'],
 					dest: 'public/javascripts/'
+				},
+				{
+					expand: true,
+					cwd: 'bower_components/socket.io-client',
+					src: ['socket.io.js'],
+					dest: 'public/javascripts/'
 				}]
 			},
 			fonts: {
@@ -131,7 +137,7 @@ module.exports = function(grunt) {
 					'bower_components/angular-resource/angular-resource.js',
 					'bower_components/angular-animate/angular-animate.js',
 					'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-					'bower_components/socket.io-client/socket.io.js',
+					// 'bower_components/socket.io-client/socket.io.js',
 					'bower_components/angular-cookies/angular-cookies.js'
 				],
 				dest: 'public/javascripts/libs.js',

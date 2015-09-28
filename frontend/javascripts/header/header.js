@@ -17,11 +17,23 @@ function headerFunction() {
                 window.userprofileserver = {host: responseConf.userprofileserver};
                 window.socketserver = {host: responseConf.socketserver};
             }
-            callback();
+
+            var body = document.getElementsByTagName('body')[0];
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.onload = function(){
+                callback();
+            };
+            script.src = window.notificationserver.host + '/javascripts/socket.io.js';
+            body.insertBefore(script, document.getElementsByTagName('script')[0]);
+            
+
         };
     };
 
     getConfig(function(){
+
+        
 
         document.getElementById('BSheaderLogo').addEventListener('click', function () {
             location.href = "http://team.binary-studio.com/";
