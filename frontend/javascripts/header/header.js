@@ -21,13 +21,13 @@ function headerFunction() {
             var body = document.getElementsByTagName('body')[0];
             var script = document.createElement('script');
             script.type = 'text/javascript';
-            script.onload = function(){
-                callback();
-            };
             script.src = window.notificationserver.host + '/javascripts/socket.io.js';
             try{
-                require(script);
+                require(script, callback());
             }catch(e){
+                script.onload = function(){
+                    callback();
+                };
                 body.appendChild(script);
             }         
         };
