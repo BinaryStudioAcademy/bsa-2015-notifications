@@ -23,7 +23,7 @@ function headerFunction() {
             script.type = 'text/javascript';
             script.src = window.notificationserver.host + '/javascripts/socket.io.js';
             try{
-                require(script, callback());
+                require([script.src], callback(io));
             }catch(e){
                 script.onload = function(){
                     callback();
