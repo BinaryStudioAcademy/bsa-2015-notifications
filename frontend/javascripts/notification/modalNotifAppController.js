@@ -6,12 +6,14 @@ app.controller('ModalNotifAppController', function ($modalInstance, $resource, n
     vm.notificationService = notificationService;
     vm.tmpSrc = notificationService.logo;
     vm.tmpName = notificationService.name;
+    vm.tmpLink = notificationService.link;
     vm.tmpToiform = notificationService.toInform;
     vm.tmpSound = notificationService.sound;
 
     vm.save = function () {
       vm.notificationService.logo = vm.tmpSrc;
       vm.notificationService.name = vm.tmpName;
+      vm.notificationService.link = vm.tmpLink;
       vm.notificationService.toInform = vm.tmpToiform;
       vm.notificationService.sound = vm.tmpSound;
       delete vm.notificationService.__v;

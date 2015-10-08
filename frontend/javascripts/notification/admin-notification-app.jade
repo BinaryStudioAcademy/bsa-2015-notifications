@@ -10,6 +10,7 @@ div.test(ng-controller="AdminNotifAppController as adminNotifAppCtrl", class="co
 					<div class="form-group">
 						<input type="text" ng-model="modalnotifapp.tmpName" class="form-control">
 						<input type="text" ng-model="modalnotifapp.tmpSrc" class="form-control">
+						<input type="text" ng-model="modalnotifapp.tmpLink" class="form-control">
 						<input type="checkbox" ng-model="modalnotifapp.tmpToiform" ng-click="modalnotifapp.changeSetting(modalnotifapp.notificationService)"/><span>To inform</span><br>
 						<input type="checkbox" ng-model="modalnotifapp.tmpSound" ng-click="modalnotifapp.changeSetting(modalnotifapp.notificationService)"/><span>Sound</span>
 					</div>
@@ -35,6 +36,7 @@ div.test(ng-controller="AdminNotifAppController as adminNotifAppCtrl", class="co
 				.form-group(ng-class="{ 'has-error': modalnotifappForm.name.$touched && modalnotifappForm.name.$invalid }")
 					input.form-control.input-lg(type="text", name="name", ng-model="adminNotifAppCtrl.notificationService.name", placeholder="New service name",required)
 					input.form-control.input-lg(type="text", name="logo", ng-model="adminNotifAppCtrl.notificationService.logo", placeholder="Service logo path...", required)
+					input.form-control.input-lg(type="text", name="link", ng-model="adminNotifAppCtrl.notificationService.link", placeholder="Link",required)
 				.col-md-12.btn-group.full-width
 					button.btn.btn-primary.btn-lg.col-md-6(type='submit') Add
 					button.btn.btn-warning.btn-lg.col-md-6(ng-click='adminNotifAppCtrl.isCollapsed = true') Cancel			

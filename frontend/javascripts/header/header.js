@@ -214,6 +214,9 @@ function headerFunction() {
         var renderServices = function(renderItem) {
             var newService = document.createElement('div');
             newService.className = 'hdr-serviceItem';
+            newService.addEventListener('click', function () {
+                location.href = renderItem.link;
+            });
             newService.innerHTML = '<button class="hdr-appButton"><img src="' + renderItem.logo + '" width='+50+' height='+50+'></button><div class="hdr-appName"><span>' + renderItem.name + '</span></div>';
             servicesList.insertBefore(newService, servicesList.firstChild);
         };
