@@ -138,7 +138,7 @@ function headerFunction() {
         var counter = 0;
         var getNotification = function() {
                 var request = new XMLHttpRequest();
-                request.open('GET', window.notificationserver.host + '/api/usernotification/' + userObject.id, true);
+                request.open('GET', window.notificationserver.host + '/api/usernotification/' + serverUID, true);
                 request.send();
                 request.onreadystatechange = function() {
                     if (request.readyState != 4) return;
