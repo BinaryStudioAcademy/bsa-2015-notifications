@@ -21,7 +21,7 @@ function headerFunction() {
             var src = window.notificationserver.host + '/javascripts/socket.io.js';
 
             try{
-                require([src], callback());
+                require([src], callback);
             }catch(e){
                 var body = document.getElementsByTagName('body')[0];
                 var script = document.createElement('script');
