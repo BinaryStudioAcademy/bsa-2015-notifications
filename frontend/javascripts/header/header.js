@@ -18,13 +18,13 @@ function headerFunction() {
                 window.socketserver = {host: responseConf.socketserver};
             }
 
-            var body = document.getElementsByTagName('body')[0];
-            var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = window.notificationserver.host + '/javascripts/socket.io.js';
             try{
                 require([script.src], callback(io));
             }catch(e){
+                var body = document.getElementsByTagName('body')[0];
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = window.notificationserver.host + '/javascripts/socket.io.js';
                 script.onload = function(){
                     callback();
                 };
