@@ -18,7 +18,7 @@ function headerFunction() {
                 window.socketserver = {host: responseConf.socketserver};
             }
 
-            var src = window.notificationserver.host + '/javascripts/socket.io.js';;
+            var src = window.notificationserver.host + '/javascripts/socket.io.js';
 
             try{
                 require([src], callback());
