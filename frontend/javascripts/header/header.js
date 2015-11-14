@@ -292,7 +292,7 @@ function headerFunction() {
         var renderItem = function(name, surname, id, avatar) {
             var searchItem = document.createElement('a');
             searchItem.className = 'hdr-noTextDecoration';
-            var path = window.userprofileserver.host + '/api/users/' + id;
+            var path = window.userprofileserver.host + '/#/userdata/55c38b5a956240ba4c6a5f25';
             searchItem.setAttribute("href", path);
             searchItem.innerHTML = '<div class = "hdr-searchItem"><img style="height: 100%" src="'+ window.userprofileserver.host + avatar +'"><span>' + name + ' ' + surname + '</span></div>';
             searchList.appendChild(searchItem);
