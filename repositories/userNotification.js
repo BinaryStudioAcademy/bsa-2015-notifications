@@ -10,7 +10,7 @@ UserNotificaitionRepository.prototype = new Repository();
 
 UserNotificaitionRepository.prototype.getByUserId = function(id, callback) {
 	var model = this.model;
-	var query = model.find({userId: id/*, isRead: false*/});
+	var query = model.find({userId: id, isRead: false});
 	query.exec(callback);
 };
 UserNotificaitionRepository.prototype.deleteById = function(id, callback){
@@ -20,7 +20,7 @@ UserNotificaitionRepository.prototype.deleteById = function(id, callback){
 };
 UserNotificaitionRepository.prototype.updateAllByUserId = function(id, body, callback){
 	var model = this.model;
-	var query = model.update({userId: id}, body, { multi: true });
+	var query = model.update({userId: id}, { $set: body }, { multi: true });
 	query.exec(callback);
 };
 
