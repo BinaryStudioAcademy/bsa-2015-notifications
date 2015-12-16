@@ -24,7 +24,7 @@ RoomManager.prototype.removeUserFromRoom = function(user_id, room_name) {
 	}	
 };
 
-RoomManager.prototype.addRoomToUser = function(user_id, room_name) {
+RoomManager.prototype.addUserToRoom = function(user_id, room_name) {
 	user_id = user_id.toString();
 	if (this.userRooms[user_id]){
 		if (!this.isRoomStored(user_id, room_name)){

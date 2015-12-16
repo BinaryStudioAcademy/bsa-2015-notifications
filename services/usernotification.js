@@ -6,15 +6,26 @@ var async = require('../bower_components/async/dist/async');
 var NotificationService = function(){
 
 };
-NotificationService.prototype.getAll = function(callback){
-	notificationRepository.getAll(function(err, data){
+NotificationService.prototype.getByUserId = function(id, callback){
+	userNotificationRepository.getByUserId(id, function(err, data){
 		async.map(data, function(notification, asyncCallback){
-			var notificationObject = notification.toObject();
-			notificationServiceRepository.findByServiceType(notificationObject.serviceType, function(err, type){
-				if (type){
-					notificationObject.serviceLogo = type.logo;
-				}
-				asyncCallback(null, notificationObject);
+			notificationRepository.getById(notification.notificationId, function(err, res){
+				notificationServiceRepository.findByServiceType(res.serviceType, function(err, type){
+					var newObj = {};
+					newObj._id = res._id;
+					newObj.title = res.title;
+					newObj.text = res.text;
+					newObj.time = res.time;
+					newObj.url = res.url;
+					newObj.sound = res.sound;
+					newObj.serviceType = res.serviceType;
+					newObj.images = res.images;
+					newObj.isRead = notification.isRead;
+					if(type){
+						newObj.serviceLogo = type.logo;
+					}
+					asyncCallback(null, newObj);
+				});
 			});
 		}, function (errFromIterator, results){
 	                if(errFromIterator){
@@ -22,13 +33,6 @@ NotificationService.prototype.getAll = function(callback){
 	                } 
 	                callback(null, results);
 	       });
-	});
-};
-NotificationService.prototype.deleteById = function(id, callback){
-	notificationRepository.delete(id, function(err, data){
-		userNotificationRepository.deleteById(id, function(e, d){
-			callback(null, "Deleted successfully.");
-		});
 	});
 };
 NotificationService.prototype.generateNotification = function() {

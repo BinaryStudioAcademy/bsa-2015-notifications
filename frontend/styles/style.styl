@@ -1,25 +1,35 @@
 body
 	margin 0
-.header
+.hdr-header
+	z-index 3
+	position relative
 	justify-content space-between
 	display flex
 	height 70px
-	background black
+	background #333
 	top 0
 	padding 5px 15px 5px 15px
+.hdr-header 	
+	.hdr-logo
+		height 100%
+		cursor pointer
+#searchBar
+	height: 30px
+	border-radius 5px
+	padding-left 10px
+	padding-right 10px
 	
-.logo
-	height 100%
-.searchBar
-	border-radius 5px 0 0 5px
-.searchBtn
-	border-radius 0 5px 5px 0
-	border none
+.hdr-header 
+	.hdr-searchBtn
+		border-radius 0 5px 5px 0
+		border none
 	
-.buttons
-	margin-right 4px
-	align-self center
-	display flex
+.hdr-header 
+	.hdr-buttons
+		margin-top 20px
+		margin-right 4px
+		align-self center
+		display flex
 
 #userName
 	margin-left 20px
@@ -36,13 +46,14 @@ body
 	cursor pointer
 	color white
 	margin-left 10px
-.avatar
-	height 95%
-	border 1px solid #FFA800
-	border-radius 5px
-	
+.hdr-header 
+	.hdr-avatar
+		height 92%
+		border 1px solid #FFA800
+		border-radius 5px
+		
 #appsBtn
-	padding 3px;
+	padding 3px
 	border none
 	height 30px
 	width 30px
@@ -51,11 +62,12 @@ body
 	cursor pointer
 	margin-left 10px
 	
-.appsLogo
-	width 100%
+.hdr-header 	
+	.hdr-appsLogo
+		width 100%
 	
 #notificationBtn
-	padding 3px;
+	padding 3px
 	border none
 	height 30px
 	width 30px
@@ -65,45 +77,303 @@ body
 	margin-left 10px
 
 #notificationBlock
-	background #FFA800
-	min-height 300px
+	padding-top 12px
+	z-index 3
+	background #fff
+	max-height 800px
+	// overflow overlay
 	width 300px
-	border-radius 20px
+	border 1px solid #E0DDDA
+	border-radius 3px
+	box-shadow 0 0 10px rgba(0,0,0,0.5)
 	right 0
 	position absolute
 	transition 0.2s
+	padding-bottom 7px
 	&:before
 		width 0 
 		height 0 
 		border-left 20px solid transparent
 		border-right 20px solid transparent
-		border-bottom 20px solid #FFA800
+		border-bottom 20px solid #fff
 		content ''
-		margin-top -20px
+		margin-top -28px
 		margin-left 245px
 		position absolute
-		
+#appsList
+	display flex
+	flex-direction row
+	flex-wrap wrap
+	justify-content space-between
+	align-items baseline
+	align-content space-around
 #appsBlock
-	background #FFA800
+	z-index 3
 	min-height 300px
-	width 300px
-	border-radius 20px
+	background #fff
+	width 265px
+	border-radius 3px
+	border 1px solid #E0DDDA
+	box-shadow 0 0 10px rgba(0,0,0,0.5)
 	right 0
 	position absolute
-	transition 0.2s
+	transition 0.2s	
 	&:before
 		width 0 
 		height 0 
 		border-left 20px solid transparent
 		border-right 20px solid transparent
-		border-bottom 20px solid #FFA800
+		border-bottom 20px solid #fff
 		content ''
-		margin-top -20px
-		margin-left 205px
+		margin-top -15px
+		margin-left 170px
 		position absolute
-.invisible
+.hdr-invisible
 	opacity 0
-button
+	display none
+.hdr-button
+	cursor pointer
 	transition all .1s linear
 	&:active
 		transform translateY(3px)
+		
+#notificationList
+	padding-left 5px
+	height 380px
+	width 299px
+	overflow scroll
+	overflow-x hidden
+		
+.hdr-liNotification
+	border-bottom 1px solid #d6dadc
+	margin-top 10px
+	list-style-type none
+	background white
+	list-style-type none
+	border-radius 3px
+	margin-left 5px
+	margin-right 5px
+	padding 5px
+	margin-bottom 10px
+	-webkit-box-shadow 0px 0px 10px 4px rgba(255,255,255,0.98)
+	-moz-box-shadow 0px 0px 10px 4px rgba(255,255,255,0.98)
+	box-shadow 0px 0px 10px 4px rgba(255,255,255,0.98)
+	
+.hdr-notification
+	display flex
+	margin-top 10px
+.hdr-imgApp
+	align-self center
+
+
+.hdr-appButton
+	border-radius 7px
+	background #fff
+	border none
+	padding 5px
+.hdr-serviceItem
+	margin 10px
+	width 24%
+	order 0
+	flex-grow 0
+	flex-shrink 1
+	flex-basis auto
+	align-self auto
+	cursor pointer
+	&:hover
+		outline-offset 10px
+		outline 1px solid #E0DDDA
+
+.hdr-appName
+	text-align center
+	color #404040
+
+.hdr-searchItem
+	padding-right 10px
+	padding-left 10px
+	background-color white
+	border-radius 3px
+	margin-top 3px
+	width: 195px
+	background-color #fff
+	text-align center
+	height 30px
+	border 1px solid black
+	display flex
+	align-items center
+	justify-content space-between
+	z-index 1
+	position relative
+	&:hover
+		background-color #FFA800
+
+.hdr-textBlockNotification
+	display flex
+	flex-direction column
+	flex-grow 1
+	align-items flex-end
+.hdr-titleNotification
+	font-weight 600
+	width 100%
+	margin-bottom 3px
+	margin-top 3px
+	color rgba(56,56,56,0.74)
+.hdr-textNotification
+	display block
+	display -webkit-box
+	max-height 55.2px
+	overflow hidden
+	text-overflow ellipsis	
+	-webkit-line-clamp 3
+	-webkit-box-orient vertical
+.hdr-dateNotificationInBox
+	font-family verdana
+	font-weight 600
+	font-style italic
+	font-size 8pt
+	color rgba(56,56,56,0.74)
+	
+
+@media only screen and (max-width: 640px)
+	#userProfile
+		padding-right 0px
+	#userName
+		display none
+
+@media only screen and (max-width: 500px)
+	.hdr-header
+		justify-content flex-end
+	#searchBar
+		padding-left 10px
+	#userProfile
+		padding-right 0px
+	#userName
+		display none
+	.hdr-logo
+		display none
+
+
+#thumbnailApp
+	display flex
+	flex-direction row
+	flex-wrap nowrap
+	justify-content space-between
+	align-items center
+	align-content stretch
+	text-align center
+	margin-left -10px
+	margin-right -15px
+	color #383838
+	color rgba(56, 56, 56, 0.74)
+	font-weight bold
+#searchblockAdminApp
+	margin-top: 25px
+	margin-bottom: 25px
+	
+.hdr-notifButton
+	margin-left 10px
+	margin-right 10px
+	padding 3px
+	height 30px
+	border 1px solid grey
+	border-radius 6px
+	text-align center
+	margin-bottom 3px
+	transition 0.2s	
+	&:hover
+		background white
+		font-size 20px
+		
+.hdr-header 
+	.hdr-noTextDecoration
+		color black
+		text-decoration none
+		margin-left 0
+		&:hover
+			color black
+			text-decoration none
+		&:active
+			color black
+			text-decoration none
+		&:visited
+			color black
+			text-decoration none
+
+.hdr-specialNotifBtn
+	margin 10px
+	opacity 0.5
+	transition all 0.2s linear
+	&:hover
+		opacity 1
+
+
+.hdr-headerElements 
+	.hdr-userprofileAndLogoutImg
+		height 100%
+		border 1px solid #ffa800
+		border-radius 5px
+	
+.hdr-headerElements 
+	.hdr-logOutButtons
+		align-items center
+		flex-direction row-reverse
+		justify-content center
+		display flex
+		
+#logOutBox
+	height 40px
+	margin-top -14px
+	display flex
+	z-index 4
+	background #DDD
+	max-height 800px
+	width 140px
+	border-radius 0px 0px 5px 5px
+	right 103px
+	position: absolute
+	transition .2s
+	padding-bottom 7px
+	align-items flex-end
+	justify-content space-around
+#userProfileInBoxBtn
+	padding 3px
+	border none
+	height 30px
+	width 30px
+	border-radius 5px
+	background #ffa800
+	cursor pointer
+	
+.hdr-headerElements 
+	.hdr-userprofileAndLogoutBtn
+		padding 3px
+		border none
+		height 30px
+		width 30px
+		border-radius 5px
+		background #ffa800
+		cursor pointer
+#notificationCounter
+	background-color red
+	position absolute
+	padding 1px
+	border-radius 10px
+	color white
+	right 10px
+	top 10px
+	min-width 22px
+	height 22px
+	text-align center
+	
+#notificationBlock  
+	::-webkit-scrollbar
+		width 10px
+	::-webkit-scrollbar-track
+		-webkit-box-shadow inset 0 0 6px rgba(0,0,0,0.3)
+	::-webkit-scrollbar-thumb
+		background-color #C3BEBE
+		outline 1px solid #828B93
+.hdr-notRead
+	background-color #FFE7BA
+	border-radius 14px
+// .headerElements

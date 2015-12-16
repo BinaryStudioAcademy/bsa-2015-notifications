@@ -7,7 +7,7 @@ SocketManager.prototype.getSocketsByUserId = function(user_id) {
 	return sockets[user_id];
 };
 
-SocketManager.prototype.removeSocketForUser = function(user_id, socket_id) {
+SocketManager.prototype.removeSocketFromUser = function(user_id, socket_id) {
 	if (sockets[user_id]){
 		if (this.isSocketStored(user_id, socket_id)){
 			var index = sockets[user_id].indexOf(socket_id);
@@ -16,7 +16,7 @@ SocketManager.prototype.removeSocketForUser = function(user_id, socket_id) {
 	}	
 };
 
-SocketManager.prototype.addSocketForUser = function(user_id, socket_id) {
+SocketManager.prototype.addSocketToUser = function(user_id, socket_id) {
 	if (sockets[user_id]){
 		if (!this.isSocketStored(user_id, socket_id)){
 			sockets[user_id].push(socket_id);

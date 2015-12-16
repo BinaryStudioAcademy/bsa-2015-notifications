@@ -1,11 +1,17 @@
-
+var config = require('../../config/');
 module.exports = function (app) {
 
 	app.get('/', function(req, res){
-		res.render('index');
+		res.render('index', {
+			loginserver:config.loginserver.host,
+			notificationserver:config.notificationserver.host,
+			userprofileserver:config.userprofileserver.host,
+			socketserver: config.sockets.host
+		});
 	});
 	app.get('/header', function(req, res){
-		res.render('header');
+			res.header('Access-Control-Allow-Origin', '*');
+			res.render('header');
 	});
 
 };

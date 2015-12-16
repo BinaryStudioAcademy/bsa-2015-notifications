@@ -12,6 +12,13 @@ app.use('/', express.static(__dirname + '/public'));
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
 
+app.use(function(req, res, next) {
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	res.setHeader("Access-Control-Allow-Methods", "DELETE,GET,POST,PUT");
+	res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	return next();
+});
+
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
@@ -20,5 +27,9 @@ app.use(bodyParser.json());
 var routes = require('./routes/')(app);
 
 var server = app.listen(4033);
+
+var io = require('./io/server')(server);
+
+console.log("Server started.");
 
 module.exports = app;
