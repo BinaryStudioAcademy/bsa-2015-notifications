@@ -9,7 +9,7 @@ app.controller('AdminNotifAppController', function($resource, $modal, $timeout){
 
 	getNotificationServices();
 	function getNotificationServices(){
-        var NotificationServices = $resource(window.notificationserver.host + '/api/notificationservice');
+        var NotificationServices = $resource(window.notificationserver.host + '/api/notificationService');
         var notserv = NotificationServices.query(function(res){
         	console.log(res);
             ctrl.notificationServices = res;
@@ -19,7 +19,7 @@ app.controller('AdminNotifAppController', function($resource, $modal, $timeout){
     }
 
     ctrl.addApp = function () {
-    	var Apps = $resource(window.notificationserver.host + '/api/notificationservice', null, {'post': {method: 'POST'}});
+    	var Apps = $resource(window.notificationserver.host + '/api/notificationService', null, {'post': {method: 'POST'}});
     	var app = Apps.post(ctrl.notificationService, function (newApp) {
     		ctrl.notificationServices.push(newApp);
     	}, function(err) {
@@ -46,7 +46,7 @@ app.controller('AdminNotifAppController', function($resource, $modal, $timeout){
         modalInstance.result.then(function (updatedNotifApp) {
                 var id = updatedNotifApp._id;
                 delete updatedNotifApp._id;
-                var Notificationservices = $resource(window.notificationserver.host + '/api/notificationservice/:id', {id: '@id'}, {'update': { method:'PUT' }});
+                var Notificationservices = $resource(window.notificationserver.host + '/api/notificationService/:id', {id: '@id'}, {'update': { method:'PUT' }});
                 var notifapp = Notificationservices.update({id: id}, updatedNotifApp);
           });
     };

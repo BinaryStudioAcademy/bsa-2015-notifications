@@ -37,7 +37,13 @@ function NotificationController($resource, $cookies) {
 	function getNotifications(){
 	    var Notifications = $resource(window.notificationserver.host + '/api/usernotification/'+ serverUserId);
 	   	var not = Notifications.query(function(res){
-	   		vm.notifications = res;
+
+	   		vm.notifications = [];
+            res.forEach(function(item){
+                if (Object.keys(item).length > 0){
+                    vm.notifications.push(item);
+                }
+            });
             for(var i = 0; i<vm.notifications.length; i++){
                 vm.notifications[i].time = new Date(vm.notifications[i].time);
             }

@@ -43,6 +43,16 @@ function headerFunction() {
         document.getElementById('BSheaderLogo').addEventListener('click', function () {
             location.href = "http://team.binary-studio.com/";
         });
+
+        document.getElementsByTagName('body')[0].addEventListener('click', function (evt) {
+           var elements = ['logOutBox', 'appsBlock', 'notificationBlock', 'search'];
+           elements.forEach(function(item){
+                var el = document.getElementById(item);
+                if (!matchId(item, event.target) && el.className.indexOf('hdr-invisible') === -1 && !matchClass('hdr-buttons', evt.target)){
+                    el.className += ' hdr-invisible';
+                }
+           });
+        });
         // document.getElementById('searchBtn').addEventListener('click', function () {
         //     location.href = "http://team.binary-studio.com/profile/#/search";
         // });
@@ -90,7 +100,7 @@ function headerFunction() {
                 notReadList[i].classList.remove('hdr-notRead');
             }
             var request = new XMLHttpRequest();
-            request.open('PUT', window.notificationserver.host + '/api/usernotification/' + userObject.id, true);
+            request.open('PUT', window.notificationserver.host + '/api/usernotification/' + userObject.serverUserId, true);
             request.withCredentials = true;
             request.setRequestHeader('Content-Type', 'application/json');
             request.send(JSON.stringify({isRead: true}));
@@ -102,6 +112,22 @@ function headerFunction() {
                 }
             };
         });
+
+        function matchId(id, el){
+            if (el.id && el.id === id){
+                return el;
+            } else if (el.parentNode) {
+                return matchId(id, el.parentNode);
+            }
+        }
+
+        function matchClass(clas, el){
+            if (el.className && el.className.indexOf(clas) !== -1 ){
+                return el;
+            } else if (el.parentNode) {
+                return matchClass(clas, el.parentNode);
+            }
+        }
 
         function getCookie(name) {
             var matches = document.cookie.match(new RegExp(
@@ -149,16 +175,17 @@ function headerFunction() {
                     } else {
                         respArray = JSON.parse(request.responseText);
                         console.log(respArray);
-                        respArray.forEach(function(notification){
-                            if(!notification.isRead){
+                        var result = respArray.map(function(notification){
+                            if(!notification.isRead && Object.keys(notification).length !== 0){
                                 counter++;
+                                return notification;
                             }
                         });
                         document.getElementById('notificationCounter').innerHTML = counter;
                         if(counter){    
                             document.getElementById('notificationCounter').classList.remove('hdr-invisible');
                         }
-                        addNotification(respArray);
+                        addNotification(result);
                     }
                 };
             };
@@ -170,28 +197,32 @@ function headerFunction() {
             if(!renderItem.isRead){
                 newNotification.classList.add('hdr-notRead');
             }
-            newNotification.innerHTML = '<div class="hdr-notification"><img src="' + renderItem.serviceLogo + '" class="hdr-imgApp" width='+50+' height='+50+'><div class="hdr-textBlockNotification"><h5 class="hdr-titleNotification">' + renderItem.title + '</h5><span class="hdr-textNotification">' + renderItem.text + '</span><span class="hdr-dateNotificationInBox">' + renderItem.time + '</span></div></div>';
+            var logoDefault = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAADmElEQVRoQ+2az08TQRTHv6/QgmGLeNXL4h+gJdF4tBw0Jh7Eg2fLyVAOwF9A+QuAQyGeqGcPwsHE6AE8Gk1E/wCZi56BLpGW0mdmlyXd7Y+d7e5U0nSP7cyb95n35s2bN0Pok4/6hAMDkFaWNDf/muDzhyA2UWcTRKanHbNAggSYBCpjO2KJDuPyiMgWsZWvnz8DOEeETBjFmLEPUAmJoR0xd02E6etv2zWIA3C2TES5KAq4fZm5hERypVug0CDmKk9g1FogRiEOAL8MJhRwaqyHdbtQIGbRygC8FdaFwgJfuNysmDf2Vfsqg5ib5Szq/I6IJlSFR2nHzIdI0HMxl95TkaMEYhatHBFvqQiMuw0zScuUguQGgkhLEGM3SJDO/5kwHWSZjiDOmqjv9sqd2k2G7WZITHdaM21B7OiUsnZ1L2xVS9oBoGpMt4tm7UGK5QIRllUH6kU7ZqyI+XTLsN8SRG52xLWDqMqlU8CDm8O2mC9/aihXo0l0IllyqtWm2Rpk47hEoJdRhr2VJrx/MYbxEUfKcQV4+vYEv8scRSwY/Ebkx5uyiSaQuKyxcD+FhXspj9Lr36pY/xrRLACYhif9VmkG2bAWCbwaadoAaAUBLYm8sdaoYzNIsfw9jkj1aHIYr5+Meubj1YdTfDqoRZ0jyAgm5tNTbUHicit3gNk7STyedBb7x4Matn6eRYZwBXDFuNEYij0W+Z+pSFhCf+riA7l6e0f73d67p3hBYgi7YWe22/b+MOwDKe8R8LBb4f5+v+YMz0+3N624RIOBzyKfzroCByAqUzuwiMIsBbhW9ByrUQe9FvHmXFrDr1YQX0qvdUPUC+I9y3tBYjqHuO6lFaRTiiIVMDfK+wTcVVhvgU10gTDwQ+TTnvKstjReUuoDUUnjY3QvbSAqByvHveIJw/Jw1fjFcjpUPeraIDFaJXAhhWrAR0zJjHLxwYbph3KQDSILdCOWzIZjiWChJr5FYxmpUDGyoQt0jlWsDFF9D6DrURWJ1p+PmBPZrkqm7sB9UcS+hOmHawWvZXi7d24mIxTNBF0ntDwhBvmxfc1AXNIdAOyFzZTTcvV2aRnnumFRT6VeLmpaQ9VY03oZ2mgx53HAWSFqsduVKasioGShZ9fTfve7eO0wYz8YCLnn2C4kHwzQ0Ha3AF2tkcA1ZLvdiYQy7Wcc8D3hADvPN0AC1bHtsO7TafzAy9Ag5a/K/wOQq2IJV49/pPvIQkkfXxQAAAAASUVORK5CYII=';
+            var logo =  renderItem.serviceLogo ? renderItem.serviceLogo : logoDefault;
+            newNotification.innerHTML = '<div class="hdr-notification"><img src="' + logo + '" class="hdr-imgApp" width='+50+' height='+50+'><div class="hdr-textBlockNotification"><h5 class="hdr-titleNotification">' + renderItem.title + '</h5><span class="hdr-textNotification">' + renderItem.text + '</span><span class="hdr-dateNotificationInBox">' + renderItem.time + '</span></div></div>';
             notificationList.insertBefore(newNotification, notificationList.firstChild);
         };
 
         var addNotification = function(arrayNotification) {
             notificationList.innerHTML = '';
             arrayNotification.forEach(function(notiObj) {
-                var d = new Date(notiObj.time);
-                Number.prototype.padLeft = function(base, chr) {
-                    var len = (String(base || 10).length - String(this).length) + 1;
-                    return len > 0 ? new Array(len).join(chr || '0') + this : this;
-                };
-                notiObj.time = [(d.getMonth() + 1).padLeft(),
-                    d.getDate().padLeft(),
-                    d.getFullYear()
-                ].join('/') + ' ' +
+                if (notiObj){
+                    var d = new Date(notiObj.time);
+                    Number.prototype.padLeft = function(base, chr) {
+                        var len = (String(base || 10).length - String(this).length) + 1;
+                        return len > 0 ? new Array(len).join(chr || '0') + this : this;
+                    };
+                    notiObj.time = [(d.getMonth() + 1).padLeft(),
+                        d.getDate().padLeft(),
+                        d.getFullYear()
+                    ].join('/') + ' ' +
                     [d.getHours().padLeft(),
-                    d.getMinutes().padLeft(),
-                    d.getSeconds().padLeft()
-                ].join(':');
+                        d.getMinutes().padLeft(),
+                        d.getSeconds().padLeft()
+                    ].join(':');
 
-                renderNotification(notiObj);
+                    renderNotification(notiObj);
+                }
             });
         };
 
@@ -200,7 +231,7 @@ function headerFunction() {
 
         var getService = function() {
             var request = new XMLHttpRequest();
-            request.open('GET', window.notificationserver.host + '/api/notificationservice', true);
+            request.open('GET', window.notificationserver.host + '/api/notificationService', true);
             request.send();
             request.onreadystatechange = function() {
                 if (request.readyState != 4) return;
@@ -245,6 +276,8 @@ function headerFunction() {
 
             getInputValue();
             filtrByInput(usersArray, inputValue);
+            var results = document.getElementById('search');
+            results.className = results.className.replace('hdr-invisible', '');
             renderSearchResult(searchFiltrRsult);
             if (inputValue === '') {
                 searchFiltrRsult = [];

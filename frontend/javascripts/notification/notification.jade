@@ -1,10 +1,11 @@
 .col-md-2.col-md-offset-2
 	h1 Filters
 	input.form-control(type="text" placeholder="Search by title" ng-model="notificationCtrl.searchText.title")
-	br
-	.col-md-12(ng-repeat="service in notificationCtrl.notificationServices")
-		input(type="checkbox" ng-click="notificationCtrl.includeService(service)") 
-		span {{service.name}}
+	div.filters-by-app
+		h4 Service type
+		.col-md-12(ng-repeat="service in notificationCtrl.notificationServices")
+			input(type="checkbox" ng-click="notificationCtrl.includeService(service)") 
+			span.service-name-filter {{service.name}}
 	h4 Start date
 	//- div(style="display:inline-block;")
 	//- 	datepicker.well.well-sm(ng-model="notificationCtrl.dtStart" max-date="notificationCtrl.today" show-weeks="false" starting-day="1")
@@ -21,8 +22,8 @@
 		span.input-group-btn
 			button.btn.btn-default(type="button" ng-click="notificationCtrl.openEnd()")
 				i.glyphicon.glyphicon-calendar
-	button.btn.btn-danger(ng-click="notificationCtrl.clear()") Clear
-.col-md-5
+	button.btn.btn-danger(ng-click="notificationCtrl.clear()") Clear filters
+.col-md-5.notifications-list-wrapper
 	.panel.panel-default(ng-repeat="notification in notificationCtrl.notifications | filter: notificationCtrl.serviceFilter | filter: notificationCtrl.dateFilter | filter: notificationCtrl.searchText | orderBy: 'time'")
 		.panel-body
 			img.img-responsive.col-md-2(ng-src="{{notification.serviceLogo}}")
