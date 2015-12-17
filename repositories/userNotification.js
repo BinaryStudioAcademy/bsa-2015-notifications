@@ -1,5 +1,6 @@
 var Repository = require('../units/Repository');
 var UserNotification = require('../schemas/userNotification');
+var mongoose = require('mongoose');
 
 var UserNotificaitionRepository = function(){
 	Repository.prototype.constructor.call(this);
@@ -10,6 +11,8 @@ UserNotificaitionRepository.prototype = new Repository();
 
 UserNotificaitionRepository.prototype.getByUserId = function(id, callback) {
 	var model = this.model;
+	// var ObjectID = mongoose.Types.ObjectId(id);
+	console.log('ID: ', id);
 	var query = model.find({userId: id, isRead: false});
 	query.exec(callback);
 };

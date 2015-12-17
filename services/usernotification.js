@@ -10,22 +10,26 @@ NotificationService.prototype.getByUserId = function(id, callback){
 	userNotificationRepository.getByUserId(id, function(err, data){
 		async.map(data, function(notification, asyncCallback){
 			notificationRepository.getById(notification.notificationId, function(err, res){
-				notificationServiceRepository.findByServiceType(res.serviceType, function(err, type){
-					var newObj = {};
-					newObj._id = res._id;
-					newObj.title = res.title;
-					newObj.text = res.text;
-					newObj.time = res.time;
-					newObj.url = res.url;
-					newObj.sound = res.sound;
-					newObj.serviceType = res.serviceType;
-					newObj.images = res.images;
-					newObj.isRead = notification.isRead;
-					if(type){
-						newObj.serviceLogo = type.logo;
-					}
-					asyncCallback(null, newObj);
-				});
+				if (res){
+					notificationServiceRepository.findByServiceType(res.serviceType, function(err, type){
+						var newObj = {};
+						newObj._id = res._id;
+						newObj.title = res.title;
+						newObj.text = res.text;
+						newObj.time = res.time;
+						newObj.url = res.url;
+						newObj.sound = res.sound;
+						newObj.serviceType = res.serviceType;
+						newObj.images = res.images;
+						newObj.isRead = notification.isRead;
+						if(type){
+							newObj.serviceLogo = type.logo;
+						}
+						asyncCallback(null, newObj);
+					});
+				} else {
+					asyncCallback(null, {});
+				}
 			});
 		}, function (errFromIterator, results){
 	                if(errFromIterator){
