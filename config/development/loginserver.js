@@ -1,3 +1,3 @@
 module.exports = {
-	host: 'http://localhost:2020'
+	host: 'http://team.binary-studio.com/auth'
 };

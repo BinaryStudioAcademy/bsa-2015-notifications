@@ -1,3 +1,3 @@
 module.exports = {
-	host: 'http://localhost:1337'
+	host: 'http://team.binary-studio.com/profile/'
 };

@@ -1,3 +1,3 @@
 module.exports = {
-	refererHost: 'localhost:4033'
+	refererHost: 'team.binary-studio.com/auth'
 };
