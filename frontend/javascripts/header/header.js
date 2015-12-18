@@ -44,9 +44,9 @@ function headerFunction() {
             location.href = "http://team.binary-studio.com/";
         });
 
-        document.getElementById('sendnotification').addEventListener('click', function () {
-            sendNotification();
-        });
+        // document.getElementById('sendnotification').addEventListener('click', function () {
+        //     sendNotification();
+        // });
 
         document.getElementsByTagName('body')[0].addEventListener('click', function (evt) {
            var elements = ['logOutBox', 'appsBlock', 'notificationBlock', 'search'];
