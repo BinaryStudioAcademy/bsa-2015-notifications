@@ -1,3 +1,3 @@
 module.exports = {
-	host: 'http://team.binary-studio.com/profile/'
+	host: 'http://team.binary-studio.com/profile'
 };
