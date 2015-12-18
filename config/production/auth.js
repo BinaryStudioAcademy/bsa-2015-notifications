@@ -1,3 +1,3 @@
 module.exports = {
-	refererHost: 'team.binary-studio.com/app'
+	refererHost: 'http://team.binary-studio.com/app'
 };
