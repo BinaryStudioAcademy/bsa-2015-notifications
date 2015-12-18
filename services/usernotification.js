@@ -6,8 +6,8 @@ var async = require('../bower_components/async/dist/async');
 var NotificationService = function(){
 
 };
-NotificationService.prototype.getByUserId = function(id, callback){
-	userNotificationRepository.getByUserId(id, function(err, data){
+NotificationService.prototype.getByUserId = function(id, isRead, callback){
+	userNotificationRepository.getByUserId(id, isRead, function(err, data){
 		async.map(data, function(notification, asyncCallback){
 			notificationRepository.getById(notification.notificationId, function(err, res){
 				if (res){

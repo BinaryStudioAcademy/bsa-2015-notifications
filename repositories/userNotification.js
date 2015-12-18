@@ -9,13 +9,23 @@ var UserNotificaitionRepository = function(){
 
 UserNotificaitionRepository.prototype = new Repository();
 
-UserNotificaitionRepository.prototype.getByUserId = function(id, callback) {
+UserNotificaitionRepository.prototype.getByUserId = function(id, isRead, callback) {
 	var model = this.model;
 	// var ObjectID = mongoose.Types.ObjectId(id);
 	console.log('ID: ', id);
-	var query = model.find({userId: id, isRead: false});
+	
+	var notifications = {userId: id, isRead: false};
+	var limit = 0;
+
+	if (isRead){
+		notifications = {userId: id};
+		limit = 100;
+	}
+	
+	var query = model.find(notifications).limit(limit);
 	query.exec(callback);
 };
+
 UserNotificaitionRepository.prototype.deleteById = function(id, callback){
 	var model = this.model;
 	var query = model.remove({notificationId: id});
@@ -24,6 +34,12 @@ UserNotificaitionRepository.prototype.deleteById = function(id, callback){
 UserNotificaitionRepository.prototype.updateAllByUserId = function(id, body, callback){
 	var model = this.model;
 	var query = model.update({userId: id}, { $set: body }, { multi: true });
+	query.exec(callback);
+};
+
+UserNotificaitionRepository.prototype.updateNotification = function(id, nid, body, callback){
+	var model = this.model;
+	var query = model.update({userId: id, notificationId: nid}, { $set: body });
 	query.exec(callback);
 };
 

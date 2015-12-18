@@ -97,6 +97,7 @@ function headerFunction() {
         var readAllButton = document.getElementById('readAllBtn');
         readAllButton.addEventListener('click', function (event) {
             event.preventDefault();
+            document.getElementById('readAllBtn').style.display = 'none';
             notificationCounter.classList.add('hdr-invisible');
             notificationCounter.innerHTML = 0;
             var notReadList = document.querySelectorAll('.hdr-notRead');
@@ -203,9 +204,42 @@ function headerFunction() {
             }
             var logoDefault = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAADmElEQVRoQ+2az08TQRTHv6/QgmGLeNXL4h+gJdF4tBw0Jh7Eg2fLyVAOwF9A+QuAQyGeqGcPwsHE6AE8Gk1E/wCZi56BLpGW0mdmlyXd7Y+d7e5U0nSP7cyb95n35s2bN0Pok4/6hAMDkFaWNDf/muDzhyA2UWcTRKanHbNAggSYBCpjO2KJDuPyiMgWsZWvnz8DOEeETBjFmLEPUAmJoR0xd02E6etv2zWIA3C2TES5KAq4fZm5hERypVug0CDmKk9g1FogRiEOAL8MJhRwaqyHdbtQIGbRygC8FdaFwgJfuNysmDf2Vfsqg5ib5Szq/I6IJlSFR2nHzIdI0HMxl95TkaMEYhatHBFvqQiMuw0zScuUguQGgkhLEGM3SJDO/5kwHWSZjiDOmqjv9sqd2k2G7WZITHdaM21B7OiUsnZ1L2xVS9oBoGpMt4tm7UGK5QIRllUH6kU7ZqyI+XTLsN8SRG52xLWDqMqlU8CDm8O2mC9/aihXo0l0IllyqtWm2Rpk47hEoJdRhr2VJrx/MYbxEUfKcQV4+vYEv8scRSwY/Ebkx5uyiSaQuKyxcD+FhXspj9Lr36pY/xrRLACYhif9VmkG2bAWCbwaadoAaAUBLYm8sdaoYzNIsfw9jkj1aHIYr5+Meubj1YdTfDqoRZ0jyAgm5tNTbUHicit3gNk7STyedBb7x4Matn6eRYZwBXDFuNEYij0W+Z+pSFhCf+riA7l6e0f73d67p3hBYgi7YWe22/b+MOwDKe8R8LBb4f5+v+YMz0+3N624RIOBzyKfzroCByAqUzuwiMIsBbhW9ByrUQe9FvHmXFrDr1YQX0qvdUPUC+I9y3tBYjqHuO6lFaRTiiIVMDfK+wTcVVhvgU10gTDwQ+TTnvKstjReUuoDUUnjY3QvbSAqByvHveIJw/Jw1fjFcjpUPeraIDFaJXAhhWrAR0zJjHLxwYbph3KQDSILdCOWzIZjiWChJr5FYxmpUDGyoQt0jlWsDFF9D6DrURWJ1p+PmBPZrkqm7sB9UcS+hOmHawWvZXi7d24mIxTNBF0ntDwhBvmxfc1AXNIdAOyFzZTTcvV2aRnnumFRT6VeLmpaQ9VY03oZ2mgx53HAWSFqsduVKasioGShZ9fTfve7eO0wYz8YCLnn2C4kHwzQ0Ha3AF2tkcA1ZLvdiYQy7Wcc8D3hADvPN0AC1bHtsO7TafzAy9Ag5a/K/wOQq2IJV49/pPvIQkkfXxQAAAAASUVORK5CYII=';
             var logo =  renderItem.serviceLogo ? renderItem.serviceLogo : logoDefault;
-            newNotification.innerHTML = '<div class="hdr-notification"><img src="' + logo + '" class="hdr-imgApp" width='+50+' height='+50+'><div class="hdr-textBlockNotification"><h5 class="hdr-titleNotification">' + renderItem.title + '</h5><span class="hdr-textNotification">' + renderItem.text + '</span><span class="hdr-dateNotificationInBox">' + renderItem.time + '</span></div></div>';
+            newNotification.innerHTML = '<div class="hdr-notification"><img src="' + logo + '" class="hdr-imgApp" width='+50+' height='+50+'><div class="hdr-textBlockNotification"><h5 class="hdr-titleNotification"><a target="_blank" class="itemReadNotification" href=' + renderItem.url + ' nid=' + renderItem._id + '>' + renderItem.title + '</a></h5><span class="hdr-textNotification">' + renderItem.text + '</span><span class="hdr-dateNotificationInBox">' + renderItem.time + '</span></div></div>';
             notificationList.insertBefore(newNotification, notificationList.firstChild);
+
+            
+
+            newNotification.getElementsByTagName('a')[0].addEventListener('click', readNotification, false);
+
+
+
         };
+
+        var readNotification = function(evt) {
+                var attribute = this.getAttribute("nid");
+                var request = new XMLHttpRequest();
+                request.open('PUT', window.notificationserver.host + '/api/usernotification/' + userObject.serverUserId + '/nid/' + attribute, true);
+                request.withCredentials = true;
+                request.setRequestHeader('Content-Type', 'application/json');
+                request.send(JSON.stringify({isRead: true}));
+                var self = this;
+                request.onreadystatechange = function() {
+                    if (request.readyState != 4) return;
+                    if (request.status != 200) {
+                    }else {
+                        var el = matchClass('hdr-notRead', self);
+                        if (el){
+                            el.classList.remove('hdr-notRead');   
+                        }
+                        el = document.getElementById('notificationCounter');
+                        var number = Number(el.innerText) -1;
+                        el.innerText = number;
+                        if (!number || number === 0){
+                            el.style.display = 'none';
+                        }
+                    }
+                };
+            };
 
         var addNotification = function(arrayNotification) {
             notificationList.innerHTML = '';
@@ -382,7 +416,8 @@ function headerFunction() {
 
             this.socket.on('notification', function(data){
                 console.log('notification', data);
-
+                document.getElementById('notificationCounter').style.display = 'block';
+                document.getElementById('readAllBtn').style.display = 'inline-block';
                 var d = new Date(data.time);
                 Number.prototype.padLeft = function(base, chr) {
                     var len = (String(base || 10).length - String(this).length) + 1;

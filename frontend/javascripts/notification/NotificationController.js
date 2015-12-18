@@ -35,7 +35,7 @@ function NotificationController($resource, $cookies) {
     // socketHandler.sendMessage('message_on_connection', 'qwe');
 
 	function getNotifications(){
-	    var Notifications = $resource(window.notificationserver.host + '/api/usernotification/'+ serverUserId);
+	    var Notifications = $resource(window.notificationserver.host + '/api/usernotificationall/'+ serverUserId);
 	   	var not = Notifications.query(function(res){
 
 	   		vm.notifications = [];

@@ -16,7 +16,14 @@ module.exports = function(app) {
     });
 
     app.get('/api/usernotification/:id', function(req, res) {
-        userNotificationService.getByUserId(req.params.id, function(err, data) {
+        userNotificationService.getByUserId(req.params.id, false, function(err, data) {
+            res.err = err;
+            res.send(data);
+        });
+    });
+
+    app.get('/api/usernotificationall/:id', function(req, res) {
+        userNotificationService.getByUserId(req.params.id, true, function(err, data) {
             res.err = err;
             res.send(data);
         });
@@ -31,6 +38,13 @@ module.exports = function(app) {
              res.err = err;
              res.send(data);
         });    
+    });
+
+    app.put('/api/usernotification/:id/nid/:nid', function(req, res) {
+       userNotificationRepository.updateNotification(req.params.id, req.params.nid, req.body, function(err, data) {
+            res.err = err;
+            res.send(data);
+        });
     });
 
     app.delete('/api/usernotification/:id', function(req, res) {
