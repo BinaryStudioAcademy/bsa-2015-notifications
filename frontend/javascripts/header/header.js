@@ -97,6 +97,10 @@ function headerFunction() {
         var readAllButton = document.getElementById('readAllBtn');
         readAllButton.addEventListener('click', function (event) {
             event.preventDefault();
+            var node = document.getElementById('notificationList');
+            while (node.hasChildNodes()) {
+                node.removeChild(node.lastChild);
+            }
             document.getElementById('readAllBtn').style.display = 'none';
             notificationCounter.classList.add('hdr-invisible');
             notificationCounter.innerHTML = 0;
