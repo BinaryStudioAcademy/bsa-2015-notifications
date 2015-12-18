@@ -44,6 +44,10 @@ function headerFunction() {
             location.href = "http://team.binary-studio.com/";
         });
 
+        document.getElementById('sendnotification').addEventListener('click', function () {
+            sendNotification();
+        });
+
         document.getElementsByTagName('body')[0].addEventListener('click', function (evt) {
            var elements = ['logOutBox', 'appsBlock', 'notificationBlock', 'search'];
            elements.forEach(function(item){
@@ -285,6 +289,28 @@ function headerFunction() {
             }
 
         });
+
+        var sendNotification = function() {
+                var request = new XMLHttpRequest();
+                request.open('POST', window.notificationserver.host + '/api/notification/', true);
+                request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+                request.send(JSON.stringify({
+                    title : "tets message",
+                    text: "WOW!!",
+                    url: "/api/images/bg.jpg",
+                    sound: "false",
+                    serviceType: "News",
+                    users: ['55de32626b8bc0b909ba2620']
+                }));
+                request.onreadystatechange = function() {
+                    if (request.readyState != 4) return;
+                    if (request.status != 200) {
+                    } else {
+                        respArray = JSON.parse(request.responseText);
+                        console.log(respArray);
+                    }
+                };
+            };
 
         var getAllUsers = function() {
             var request = new XMLHttpRequest();

@@ -9,7 +9,7 @@ module.exports = function(app) {
 
     app.post('/api/notification', function(req, res) {
         var usersArray = req.body.users;
-        // console.log(usersArray);
+        console.log('BODY: ', req.body);
         delete req.body.users;
         var now = new Date();
         req.body.time = now;
@@ -23,33 +23,37 @@ module.exports = function(app) {
                 // console.log(newObj);
                 userNotificationRepository.add(newObj);
                 console.log('user_'+ usersArray[i]);
-                appContext.io.to('user_'+ usersArray[i]).emit('notification', data);
+                // appContext.io.to('user_'+ usersArray[i]).emit('notification', data);
                 // appContext.io.sockets.emit('notification', data);
 
                 // console.log('user_'+ usersArray[i]);
-                notificationServiceRepository.findByServiceType(data.serviceType, function(err, type){
-                    var populatedNotif = {};
-
-                    populatedNotif.title = data.title;
-                    populatedNotif.url = data.url;
-                    populatedNotif.sound = data.sound;
-                    populatedNotif.serviceType = data.serviceType
-                    populatedNotif.images = data.images;
-                    populatedNotif.text = data.text;
-                    populatedNotif._id = data._id;
-                    populatedNotif.time = data.time;
-
-                    if (type){
-                        populatedNotif.serviceLogo = type.logo;
-                    }
-                    console.log(populatedNotif);
-                    appContext.io.sockets.emit('notification', populatedNotif);
-                });
+                sendNotificationTouser(i, data, usersArray);
             }
             res.err = err;
             res.send(data);
         });
     });
+
+    function sendNotificationTouser(i, data, usersArray){
+        notificationServiceRepository.findByServiceType(data.serviceType, function(err, type){
+            var populatedNotif = {};
+
+            populatedNotif.title = data.title;
+            populatedNotif.url = data.url;
+            populatedNotif.sound = data.sound;
+            populatedNotif.serviceType = data.serviceType
+            populatedNotif.images = data.images;
+            populatedNotif.text = data.text;
+            populatedNotif._id = data._id;
+            populatedNotif.time = data.time;
+
+            if (type){
+                populatedNotif.serviceLogo = type.logo;
+            }
+            console.log(populatedNotif);
+            appContext.io.to('user_'+ usersArray[i]).emit('notification', populatedNotif);
+        });
+    }
 
     app.get('/api/notification', function(req, res) {
         notificationService.getAll(function(err, data) {
