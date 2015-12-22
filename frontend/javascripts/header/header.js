@@ -3,7 +3,7 @@ function headerFunction() {
 
     var getConfig = function(callback) {
         var request = new XMLHttpRequest();
-        request.open('GET', 'http://team.binary-studio.com/app/api/config', true);
+        request.open('GET', 'http://intranet.local:88/app/api/config', true);
         request.send();
         request.onreadystatechange = function() {
             if (request.readyState != 4) return;
@@ -16,6 +16,7 @@ function headerFunction() {
                 window.notificationserver = {host: responseConf.notificationserver};
                 window.userprofileserver = {host: responseConf.userprofileserver};
                 window.socketserver = {host: responseConf.socketserver};
+                window.server = {host: responseConf.server};
             }
 
             var src = window.notificationserver.host + '/javascripts/socket.io.js';
@@ -41,7 +42,7 @@ function headerFunction() {
         }
         
         document.getElementById('BSheaderLogo').addEventListener('click', function () {
-            location.href = "http://team.binary-studio.com/";
+            location.href = "http://intranet.local:88/";
         });
 
         // document.getElementById('sendnotification').addEventListener('click', function () {
@@ -58,7 +59,7 @@ function headerFunction() {
            });
         });
         // document.getElementById('searchBtn').addEventListener('click', function () {
-        //     location.href = "http://team.binary-studio.com/profile/#/search";
+        //     location.href = "http://intranet.local:88/profile/#/search";
         // });
 
         document.getElementById('appsBtn').addEventListener('click', function() {
@@ -73,6 +74,9 @@ function headerFunction() {
             document.getElementById("logOutBox").classList.add('hdr-invisible');
             var block = document.getElementById("notificationBlock");
             block.classList.toggle('hdr-invisible');
+            if (document.getElementById('notificationList').children.length === 0){
+                
+            }
         });
 
          document.getElementById('userLink').addEventListener('click', function() {
@@ -158,9 +162,9 @@ function headerFunction() {
                 if (request.status != 200) {
                 } else {
                     userObject = JSON.parse(request.responseText)[0];
-                    avatar.setAttribute("src", window.userprofileserver.host + userObject.avatar.urlAva);
+                    avatar.setAttribute("src", window.server.host + userObject.avatar.urlAva);
                     userName.innerHTML = userObject.name + ' ' + userObject.surname;
-                    //userLink.setAttribute('href', 'http://team.binary-studio.com/profile');
+                    //userLink.setAttribute('href', 'http://intranet.local:88/profile');
                     getNotification();
                 }
             };
@@ -391,7 +395,7 @@ function headerFunction() {
             searchItem.className = 'hdr-noTextDecoration';
             var path = window.userprofileserver.host + '/#/userdata/' + id;
             searchItem.setAttribute("href", path);
-            searchItem.innerHTML = '<div class = "hdr-searchItem"><img style="height: 100%" src="'+ window.userprofileserver.host + avatar +'"><span>' + name + ' ' + surname + '</span></div>';
+            searchItem.innerHTML = '<div class = "hdr-searchItem"><img style="height: 100%" src="'+ window.server.host + avatar +'"><span>' + name + ' ' + surname + '</span></div>';
             searchList.appendChild(searchItem);
         };
         var getInputValue = function() {
