@@ -3,7 +3,7 @@ function headerFunction() {
 
     var getConfig = function(callback) {
         var request = new XMLHttpRequest();
-        request.open('GET', 'http://intranet.local:88/app/api/config', true);
+        request.open('GET', 'http://team.binary-studio.com/app/api/config', true);
         request.send();
         request.onreadystatechange = function() {
             if (request.readyState != 4) return;
@@ -42,7 +42,7 @@ function headerFunction() {
         }
         
         document.getElementById('BSheaderLogo').addEventListener('click', function () {
-            location.href = "http://intranet.local:88/";
+            location.href = "http://team.binary-studio.com/";
         });
 
         // document.getElementById('sendnotification').addEventListener('click', function () {
@@ -59,7 +59,7 @@ function headerFunction() {
            });
         });
         // document.getElementById('searchBtn').addEventListener('click', function () {
-        //     location.href = "http://intranet.local:88/profile/#/search";
+        //     location.href = "http://team.binary-studio.com/profile/#/search";
         // });
 
         document.getElementById('appsBtn').addEventListener('click', function() {
@@ -164,7 +164,7 @@ function headerFunction() {
                     userObject = JSON.parse(request.responseText)[0];
                     avatar.setAttribute("src", window.server.host + userObject.avatar.urlAva);
                     userName.innerHTML = userObject.name + ' ' + userObject.surname;
-                    //userLink.setAttribute('href', 'http://intranet.local:88/profile');
+                    //userLink.setAttribute('href', 'http://team.binary-studio.com/profile');
                     getNotification();
                 }
             };
