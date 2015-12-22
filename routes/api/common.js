@@ -7,7 +7,8 @@ module.exports = function(app) {
 			loginserver: config.loginserver.host,
 			notificationserver: config.notificationserver.host,
 			userprofileserver: config.userprofileserver.host,
-			socketserver: config.sockets.host
+			socketserver: config.sockets.host,
+			server: config.server.host
 		});
 	});
 };
