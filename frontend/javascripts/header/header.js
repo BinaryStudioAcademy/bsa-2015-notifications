@@ -126,7 +126,7 @@ function headerFunction() {
                 if (request.readyState != 4) return;
                 if (request.status != 200) {
                 }else {
-                    console.log(request.responseText);
+                    // console.log(request.responseText);
                 }
             };
         });
@@ -192,7 +192,7 @@ function headerFunction() {
                     if (request.status != 200) {
                     } else {
                         respArray = JSON.parse(request.responseText);
-                        console.log(respArray);
+                        // console.log(respArray);
                         var result = respArray.map(function(notification){
                             if(!notification.isRead && Object.keys(notification).length !== 0){
                                 counter++;
@@ -354,7 +354,7 @@ function headerFunction() {
                     if (request.status != 200) {
                     } else {
                         respArray = JSON.parse(request.responseText);
-                        console.log(respArray);
+                        // console.log(respArray);
                     }
                 };
             };
@@ -369,7 +369,7 @@ function headerFunction() {
                 if (request.status != 200) {
                 } else {
                     usersArray = JSON.parse(request.responseText);
-                    console.log(usersArray);
+                    // console.log(usersArray);
 
                 }
             };
@@ -420,15 +420,15 @@ function headerFunction() {
             });
 
             this.socket.on('welcome', function(data){
-                console.log('welcome', data);
+                // console.log('welcome', data);
             });
 
             this.socket.on('title', function(data){
-                console.log('title', data);
+                // console.log('title', data);
             });
 
             this.socket.on('notification', function(data){
-                console.log('notification', data);
+                // console.log('notification', data);
                 document.getElementById('notificationCounter').style.display = 'block';
                 document.getElementById('readAllBtn').style.display = 'inline-block';
                 var d = new Date(data.time);
@@ -456,12 +456,12 @@ function headerFunction() {
 
         SocketHandler.prototype.onConnect = function(){
             var sessionid = this.socket.io.engine.id;
-            console.log(sessionid);
-            console.log('user connected!');
+            // console.log(sessionid);
+            // console.log('user connected!');
         };
 
         SocketHandler.prototype.onDisconnect = function(){
-            console.log('user disconnected!');
+            // console.log('user disconnected!');
         };
 
         SocketHandler.prototype.sendMessage = function(channel, data) {
