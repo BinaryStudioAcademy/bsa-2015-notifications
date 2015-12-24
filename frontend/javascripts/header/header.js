@@ -45,6 +45,10 @@ function headerFunction() {
             location.href = "http://team.binary-studio.com/";
         });
 
+        document.getElementById('search').addEventListener('click', function (evt) {
+            document.getElementById('search').style.display = 'none';
+        });
+
         // document.getElementById('sendnotification').addEventListener('click', function () {
         //     sendNotification();
         // });
@@ -61,6 +65,7 @@ function headerFunction() {
         // document.getElementById('searchBtn').addEventListener('click', function () {
         //     location.href = "http://team.binary-studio.com/profile/#/search";
         // });
+
 
         document.getElementById('appsBtn').addEventListener('click', function() {
             document.getElementById("notificationBlock").classList.add('hdr-invisible');

@@ -1,3 +1,3 @@
 module.exports = {
-	host: 'http://intranet.local:4033'
+	host: 'http://team.binary-studio.com:4033'
 };
