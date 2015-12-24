@@ -46,7 +46,7 @@ function headerFunction() {
         });
 
         document.getElementById('search').addEventListener('click', function (evt) {
-            document.getElementById('search').style.display = 'none';
+            document.getElementById('search').classList.add('hdr-invisible');
         });
 
         // document.getElementById('sendnotification').addEventListener('click', function () {
